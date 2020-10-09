@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Inscription_Ocarina
 {
-    public partial class MainForm : Form
+    public partial class Inscription_Children : Form
     {
-        public MainForm()
+        public Inscription_Children()
         {
             InitializeComponent();
-        }
-
-        private void Butt_Add_Children_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
