@@ -28,15 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.Butt_Add_Children = new System.Windows.Forms.Button();
             this.ComboBox_ListOfChildren = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.CB_Fiche_Sante = new System.Windows.Forms.CheckBox();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.Butt_Modifier_Participant = new System.Windows.Forms.Button();
             this.Butt_Validation = new System.Windows.Forms.Button();
             this.CB_Fin_Plaine = new System.Windows.Forms.CheckBox();
             this.CB_Payer = new System.Windows.Forms.CheckBox();
+            this.incriptionOcarinaDataSet = new Inscription_Ocarina.IncriptionOcarinaDataSet();
+            this.enfantBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.enfantTableAdapter = new Inscription_Ocarina.IncriptionOcarinaDataSetTableAdapters.EnfantTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Butt_Add_Children
@@ -51,11 +56,15 @@
             // 
             // ComboBox_ListOfChildren
             // 
+            this.ComboBox_ListOfChildren.DataSource = this.enfantBindingSource;
+            this.ComboBox_ListOfChildren.DisplayMember = "Nom";
             this.ComboBox_ListOfChildren.FormattingEnabled = true;
             this.ComboBox_ListOfChildren.Location = new System.Drawing.Point(31, 35);
             this.ComboBox_ListOfChildren.Name = "ComboBox_ListOfChildren";
             this.ComboBox_ListOfChildren.Size = new System.Drawing.Size(309, 24);
             this.ComboBox_ListOfChildren.TabIndex = 1;
+            this.ComboBox_ListOfChildren.ValueMember = "Id";
+            this.ComboBox_ListOfChildren.SelectedIndexChanged += new System.EventHandler(this.ComboBox_ListOfChildren_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -76,12 +85,6 @@
             this.CB_Fiche_Sante.Text = "Fiche santé";
             this.CB_Fiche_Sante.UseVisualStyleBackColor = true;
             // 
-            // monthCalendar1
-            // 
-            this.monthCalendar1.Location = new System.Drawing.Point(520, 18);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 4;
-            // 
             // Butt_Modifier_Participant
             // 
             this.Butt_Modifier_Participant.Location = new System.Drawing.Point(346, 92);
@@ -99,6 +102,7 @@
             this.Butt_Validation.TabIndex = 6;
             this.Butt_Validation.Text = "Valider";
             this.Butt_Validation.UseVisualStyleBackColor = true;
+            this.Butt_Validation.Click += new System.EventHandler(this.Butt_Validation_Click);
             // 
             // CB_Fin_Plaine
             // 
@@ -120,6 +124,20 @@
             this.CB_Payer.Text = "Payer";
             this.CB_Payer.UseVisualStyleBackColor = true;
             // 
+            // incriptionOcarinaDataSet
+            // 
+            this.incriptionOcarinaDataSet.DataSetName = "IncriptionOcarinaDataSet";
+            this.incriptionOcarinaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // enfantBindingSource
+            // 
+            this.enfantBindingSource.DataMember = "Enfant";
+            this.enfantBindingSource.DataSource = this.incriptionOcarinaDataSet;
+            // 
+            // enfantTableAdapter
+            // 
+            this.enfantTableAdapter.ClearBeforeFill = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -129,13 +147,15 @@
             this.Controls.Add(this.CB_Fin_Plaine);
             this.Controls.Add(this.Butt_Validation);
             this.Controls.Add(this.Butt_Modifier_Participant);
-            this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.CB_Fiche_Sante);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ComboBox_ListOfChildren);
             this.Controls.Add(this.Butt_Add_Children);
             this.Name = "MainForm";
             this.Text = "Inscription";
+            this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,11 +167,13 @@
         private System.Windows.Forms.ComboBox ComboBox_ListOfChildren;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox CB_Fiche_Sante;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button Butt_Modifier_Participant;
         private System.Windows.Forms.Button Butt_Validation;
         private System.Windows.Forms.CheckBox CB_Fin_Plaine;
         private System.Windows.Forms.CheckBox CB_Payer;
+        private IncriptionOcarinaDataSet incriptionOcarinaDataSet;
+        private System.Windows.Forms.BindingSource enfantBindingSource;
+        private IncriptionOcarinaDataSetTableAdapters.EnfantTableAdapter enfantTableAdapter;
     }
 }
 
