@@ -102,18 +102,18 @@ namespace Inscription_Ocarina
             SqlConnection cnn;
             connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Visual Studio\\Inscription Ocarina\\Inscription Ocarina\\IncriptionOcarina.mdf;Integrated Security=True;Connect Timeout=30";
             cnn = new SqlConnection(connetionString);
-
+            
             string Query = "UPDATE Enfant SET " +
                 "Nom ='" + nom +
                 "',Prenom ='" + prenom +
-                "',Email ='" + age+
+                "',Email ='" + age +
                 "',N_Nationam ='" + N_national +
-                "',Date_Naissance ='" + date.ToString("dd-MM-yyyy") +
-                "',Age ='" + age+
-                "',MC ='" + mc+
-                "',Remarque ='" + Remarque+
-                "',Allergie ='" +Allergies+
-                "',Adresse = '" +adresse+
+                "',Date_Naissance ='" + date.ToString("yyyy-MM-dd HH:mm:ss.fff") +
+                "',Age ='" + age +
+                "',MC ='" + mc +
+                "',Remarque ='" + Remarque +
+                "',Allergie ='" + Allergies + 
+                "',Adresse = '" + adresse +
                 "' WHERE Id =" + ID +";";
 
             try
