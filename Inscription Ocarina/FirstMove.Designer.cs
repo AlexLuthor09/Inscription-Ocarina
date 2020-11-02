@@ -40,6 +40,7 @@
             this.Butt_New_week.TabIndex = 0;
             this.Butt_New_week.Text = "Nouvelle Semaine";
             this.Butt_New_week.UseVisualStyleBackColor = true;
+            this.Butt_New_week.Click += new System.EventHandler(this.Butt_New_week_Click);
             // 
             // Butt_Current_week
             // 
@@ -49,6 +50,7 @@
             this.Butt_Current_week.TabIndex = 1;
             this.Butt_Current_week.Text = "Même semaine";
             this.Butt_Current_week.UseVisualStyleBackColor = true;
+            this.Butt_Current_week.Click += new System.EventHandler(this.Butt_Current_week_Click);
             // 
             // FirstMove
             // 

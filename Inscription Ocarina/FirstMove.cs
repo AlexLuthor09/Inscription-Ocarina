@@ -16,5 +16,15 @@ namespace Inscription_Ocarina
         {
             InitializeComponent();
         }
+
+        private void Butt_New_week_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Butt_Current_week_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -10,13 +10,21 @@ namespace Inscription_Ocarina
     {
         /// <summary>
         /// Point d'entrée principal de l'application.
+        static public Donnees_Partagees DP = new Donnees_Partagees();
         /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            Form_Manager form_manager = new Form_Manager();
+
+            DP.FM = form_manager;
+            DP.FM.Creation();
+
+            Application.Run(DP.FM.Current_form);
+            
         }
     }
 }

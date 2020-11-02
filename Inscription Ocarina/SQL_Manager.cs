@@ -10,6 +10,7 @@ namespace Inscription_Ocarina
 {
     class SQL_Manager
     {
+
         public SQL_Manager()
         {
             string connetionString = null;
@@ -28,7 +29,7 @@ namespace Inscription_Ocarina
                 MessageBox.Show("Can not open connection ! \n " + ex);
             }
         }
-        public void addChildren(string nom, string prenom,int age,DateTime date,string email,int N_national,string adresse,bool mc,string Allergies,string Remarque)
+        public void addChildren(string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, string Allergies, string Remarque)
         {
             string connetionString = null;
             SqlConnection cnn;
@@ -36,12 +37,12 @@ namespace Inscription_Ocarina
             cnn = new SqlConnection(connetionString);
 
             string Query = @"INSERT INTO Enfant  (Nom,Prenom,Email,N_Nationam,Date_Naissance,Age,MC,Remarque,Allergie,Adresse)" +
-                "SELECT @NOM,@PRENOM,@EMAIL,@N_NATIONAM,@DATE_NAISSANCE,@AGE,@MC,@REMARQUE,@ALLERGIE,@ADRESSE";          
-         
+                "SELECT @NOM,@PRENOM,@EMAIL,@N_NATIONAM,@DATE_NAISSANCE,@AGE,@MC,@REMARQUE,@ALLERGIE,@ADRESSE";
+
             try
             {
                 cnn.Open();
-                SqlCommand addChild = new SqlCommand( Query,cnn);
+                SqlCommand addChild = new SqlCommand(Query, cnn);
                 addChild.Parameters.AddWithValue("@NOM", nom);
                 addChild.Parameters.AddWithValue("@PRENOM", prenom);
                 addChild.Parameters.AddWithValue("@EMAIL", email);
@@ -55,17 +56,82 @@ namespace Inscription_Ocarina
                 if (addChild.ExecuteNonQuery() == 0)
                     throw new ApplicationException("Aucune ligne insérée, vérifiez les paramètres!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             finally
             {
-               
-               cnn.Close();
-            }   
-        }
 
-        
+                cnn.Close();
+            }
+        }
+        public void getChildren(int ID, Inscription_Children inscription_Children)
+        {
+            string connetionString = null;
+            SqlConnection cnn;
+            connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Visual Studio\\Inscription Ocarina\\Inscription Ocarina\\IncriptionOcarina.mdf;Integrated Security=True;Connect Timeout=30";
+            cnn = new SqlConnection(connetionString);
+
+            string Query = "Select * form Enfant";
+
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand getchild = new SqlCommand(Query, cnn);
+                inscription_Children.prenom = getchild.Parameters[ID].Value.ToString(); // getchild.Parameters["@Nom"].Value.ToString();
+                if (getchild.ExecuteNonQuery() == 0)
+                    throw new ApplicationException("Aucune ligne insérée, vérifiez les paramètres!");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+                cnn.Close();
+            }
+        }
+        public void updateChildren(int ID)
+        {
+            string connetionString = null;
+            SqlConnection cnn;
+            connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Visual Studio\\Inscription Ocarina\\Inscription Ocarina\\IncriptionOcarina.mdf;Integrated Security=True;Connect Timeout=30";
+            cnn = new SqlConnection(connetionString);
+
+            string Query = "UPDATE Enfant SET " +
+                "Nom =" +
+                ",Prenom =" +
+                ",Email =" +
+                ",N_Nationam =" +
+                ",Date_Naissance =" +
+                ",Age =" +
+                ",MC =" +
+                ",Remarque =" +
+                ",Allergie =" +
+                ",Adresse =" +
+                " WHERE Id="+ID.ToString()+";";
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand getchild = new SqlCommand(Query, cnn);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+                cnn.Close();
+            }
+
+        }
     }
 }
