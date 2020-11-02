@@ -48,7 +48,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.CB_MC = new System.Windows.Forms.CheckBox();
             this.NUD_Age = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Age)).BeginInit();
             this.SuspendLayout();
             // 
@@ -220,19 +219,11 @@
             this.NUD_Age.Size = new System.Drawing.Size(120, 22);
             this.NUD_Age.TabIndex = 22;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(443, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 23;
-            // 
             // Inscription_Children
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 793);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.NUD_Age);
             this.Controls.Add(this.CB_MC);
             this.Controls.Add(this.label9);
@@ -284,6 +275,5 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox CB_MC;
         private System.Windows.Forms.NumericUpDown NUD_Age;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

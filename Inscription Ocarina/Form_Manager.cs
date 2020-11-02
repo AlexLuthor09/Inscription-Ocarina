@@ -28,7 +28,7 @@ namespace Inscription_Ocarina
         }
         public void OpenMainF()
         {
-            this.Current_form = mainform;
+            this.Current_form = this.mainform;
             Current_form.Show();
         }
         public void OpenInscription_Children(bool modify)
@@ -45,14 +45,16 @@ namespace Inscription_Ocarina
                 this.inscription_children.N_national= Program.DP.N_national;
                 this.inscription_children.Remarque= Program.DP.Remarque;
                 this.inscription_children.date = Program.DP.date;
-                
+                this.inscription_children.mc = Program.DP.mc;
+
+
             }
-            this.Current_form = inscription_children;
+            this.Current_form = this.inscription_children;
             Current_form.ShowDialog();
         }
         public void OpenFirstMove()
         {
-            this.Current_form = firstmove;
+            this.Current_form = this.firstmove;
             Current_form.ShowDialog();
         }
     }

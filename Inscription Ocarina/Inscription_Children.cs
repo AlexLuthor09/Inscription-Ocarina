@@ -24,7 +24,7 @@ namespace Inscription_Ocarina
         public string Allergies;
         public string Remarque ;
         public DateTime date;
-
+        public bool mc;
 
 
         public Inscription_Children()
@@ -39,6 +39,7 @@ namespace Inscription_Ocarina
             adresse = null;
             Allergies = null;
             Remarque = null;
+            mc = false;
             date = DateTime.Now;
         }
     
@@ -47,26 +48,54 @@ namespace Inscription_Ocarina
         {
            _Manager = new SQL_Manager();
             
-            if (TB_Name.Text != "")
-                nom = TB_Name.Text;
-            if (TB_Firstname.Text != "")
-                prenom = TB_Firstname.Text;
-            if (NUD_Age.Value != 0)
-                age = Convert.ToInt32(NUD_Age.Value);
-            date = DTP_Naissance.Value;
-            if (TB_Email.Text != "")
-                email = TB_Email.Text;
-            if (TB_N_National.Text != "")
-                N_national = Convert.ToInt32(TB_N_National.Text);
-            if (TB_Adresse.Text != "")
-                adresse = TB_Adresse.Text;
-            bool mc = CB_MC.Checked;
-            if (TB_Allergies.Text != "")
-                Allergies = TB_Allergies.Text;
-            if (TB_Remarques.Text != "")
-                Remarque = TB_Remarques.Text;
-        
-            _Manager.addChildren( nom, prenom,age,date,email,N_national,adresse, mc, Allergies,Remarque);
+           
+            if (Program.DP.modif)
+            {
+                int id = Program.DP.id;
+
+                if (TB_Name.Text != "")
+                    nom = TB_Name.Text;
+                if (TB_Firstname.Text != "")
+                    prenom = TB_Firstname.Text;
+                if (NUD_Age.Value != 0)
+                    age = Convert.ToInt32(NUD_Age.Value);
+                date = DTP_Naissance.Value;
+                if (TB_Email.Text != "")
+                    email = TB_Email.Text;
+                if (TB_N_National.Text != "")
+                    N_national = Convert.ToInt32(TB_N_National.Text);
+                if (TB_Adresse.Text != "")
+                    adresse = TB_Adresse.Text.Replace(' ','_');
+                bool mc = CB_MC.Checked;
+                if (TB_Allergies.Text != "")
+                    Allergies = TB_Allergies.Text;
+                if (TB_Remarques.Text != "")
+                    Remarque = TB_Remarques.Text;
+                _Manager.updateChildren(id, nom, prenom, age, date, email, N_national, adresse, mc, Allergies, Remarque);
+            }
+            else
+            {
+                if (TB_Name.Text != "")
+                    nom = TB_Name.Text;
+                if (TB_Firstname.Text != "")
+                    prenom = TB_Firstname.Text;
+                if (NUD_Age.Value != 0)
+                    age = Convert.ToInt32(NUD_Age.Value);
+                date = DTP_Naissance.Value;
+                if (TB_Email.Text != "")
+                    email = TB_Email.Text;
+                if (TB_N_National.Text != "")
+                    N_national = Convert.ToInt32(TB_N_National.Text);
+                if (TB_Adresse.Text != "")
+                    adresse = TB_Adresse.Text;
+                bool mc = CB_MC.Checked;
+                if (TB_Allergies.Text != "")
+                    Allergies = TB_Allergies.Text;
+                if (TB_Remarques.Text != "")
+                    Remarque = TB_Remarques.Text;
+                _Manager.addChildren(nom, prenom, age, date, email, N_national, adresse, mc, Allergies, Remarque);
+            }
+           
 
             this.Close();
         }
@@ -74,21 +103,25 @@ namespace Inscription_Ocarina
         private void Inscription_Children_Load(object sender, EventArgs e)
         {
             
-            try
+            if (Program.DP.modif)
             {
-                TB_Name.Text = nom;
-                TB_Firstname.Text = prenom;
-                NUD_Age.Value = age;
-                DTP_Naissance.Value = date;
-                TB_Email.Text = email;
-                TB_N_National.Text = N_national.ToString();
-                TB_Adresse.Text = adresse;
-                TB_Allergies.Text = Allergies;
-                TB_Remarques.Text = Remarque;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                try
+                {
+                    TB_Name.Text = nom;
+                    TB_Firstname.Text = prenom;
+                    NUD_Age.Value = age;
+                    DTP_Naissance.Value = date;
+                    TB_Email.Text = email;
+                    TB_N_National.Text = N_national.ToString();
+                    TB_Adresse.Text = adresse;
+                    TB_Allergies.Text = Allergies;
+                    TB_Remarques.Text = Remarque;
+                    CB_MC.Checked = mc;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
     }

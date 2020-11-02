@@ -20,6 +20,8 @@ namespace Inscription_Ocarina
         public bool mc;
         public string Allergies;
         public string Remarque;
+        public bool modif;
+        public int id;
     }
 
 }

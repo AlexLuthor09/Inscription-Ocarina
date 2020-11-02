@@ -96,7 +96,7 @@ namespace Inscription_Ocarina
                 cnn.Close();
             }
         }
-        public void updateChildren(int ID)
+        public void updateChildren(int ID, string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, string Allergies, string Remarque)
         {
             string connetionString = null;
             SqlConnection cnn;
@@ -104,27 +104,29 @@ namespace Inscription_Ocarina
             cnn = new SqlConnection(connetionString);
 
             string Query = "UPDATE Enfant SET " +
-                "Nom =" +
-                ",Prenom =" +
-                ",Email =" +
-                ",N_Nationam =" +
-                ",Date_Naissance =" +
-                ",Age =" +
-                ",MC =" +
-                ",Remarque =" +
-                ",Allergie =" +
-                ",Adresse =" +
-                " WHERE Id="+ID.ToString()+";";
+                "Nom ='" + nom +
+                "',Prenom ='" + prenom +
+                "',Email ='" + age+
+                "',N_Nationam ='" + N_national +
+                "',Date_Naissance ='" + date.ToString("dd-MM-yyyy") +
+                "',Age ='" + age+
+                "',MC ='" + mc+
+                "',Remarque ='" + Remarque+
+                "',Allergie ='" +Allergies+
+                "',Adresse = '" +adresse+
+                "' WHERE Id =" + ID +";";
 
             try
             {
                 cnn.Open();
 
-                SqlCommand getchild = new SqlCommand(Query, cnn);
+                SqlCommand modifchild = new SqlCommand(Query, cnn);
+                if (modifchild.ExecuteNonQuery() == 0)
+                    throw new ApplicationException("y a r de modif !");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ca marche pas connard car :  "+ ex.Message);
             }
             finally
             {
