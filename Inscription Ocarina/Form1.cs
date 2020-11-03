@@ -12,10 +12,9 @@ namespace Inscription_Ocarina
 {
     public partial class MainForm : Form
     {
-        Donnees_Partagees ShareData;
-        
+        Donnees_Partagees ShareData = Program.DP;
         public static int DATA_id_current;
-        public bool Modify = false;
+        
 
         public MainForm()
         {
@@ -25,13 +24,13 @@ namespace Inscription_Ocarina
 
         private void Butt_Add_Children_Click(object sender, EventArgs e)
         {
-            Program.DP.FM.OpenInscription_Children(false);
-            ShareData.modif = false; //bug here
+            Program.DP.FM.OpenInscription_Children(ShareData.modif = false);
+            
         }
 
         private void Butt_Validation_Click(object sender, EventArgs e)
         {
-            
+          
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -41,26 +40,15 @@ namespace Inscription_Ocarina
             Program.DP.FM.OpenFirstMove();
 
         }
-        
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
-        
-    
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
+ 
         private void Butt_Modifier_Participant_Click(object sender, EventArgs e)
         {
             try
             {
-                ShareData = Program.DP;
+                
+
                 // faire attention au string qui sont entre [] car ils font appelle au nom des collone dans la table
+
                 ShareData.id = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()); // on récupère l'id
                 ShareData.nom = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Nom"].ToString().Trim());
                 ShareData.prenom = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Prenom"].ToString().Trim());
@@ -72,9 +60,9 @@ namespace Inscription_Ocarina
                 ShareData.age = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Age"].ToString().Trim());
                 ShareData.date = Convert.ToDateTime(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Date_Naissance"].ToString().Trim());
                 ShareData.email = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Email"].ToString().Trim());
-
-                ShareData.FM.OpenInscription_Children(true);
-                ShareData.modif = true;
+                ShareData.Fiche_Sante = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Fiche_Sante"].ToString().Trim());
+                ShareData.FM.OpenInscription_Children(ShareData.modif = true);
+               
             }
             catch(Exception ex)
             {
@@ -86,6 +74,18 @@ namespace Inscription_Ocarina
         private void But_Supp_Enfant_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ComboBox_ListOfChildren_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void BUT_Refresh_Click(object sender, EventArgs e)
+        {
+            SQL_Manager _Manager = new SQL_Manager();
+            _Manager.refresh(dataGridView1);
+          
         }
     }
 }

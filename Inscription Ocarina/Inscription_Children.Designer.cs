@@ -48,6 +48,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.CB_MC = new System.Windows.Forms.CheckBox();
             this.NUD_Age = new System.Windows.Forms.NumericUpDown();
+            this.CB_Fiche_Sante = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Age)).BeginInit();
             this.SuspendLayout();
             // 
@@ -219,11 +220,22 @@
             this.NUD_Age.Size = new System.Drawing.Size(120, 22);
             this.NUD_Age.TabIndex = 22;
             // 
+            // CB_Fiche_Sante
+            // 
+            this.CB_Fiche_Sante.AutoSize = true;
+            this.CB_Fiche_Sante.Location = new System.Drawing.Point(10, 328);
+            this.CB_Fiche_Sante.Name = "CB_Fiche_Sante";
+            this.CB_Fiche_Sante.Size = new System.Drawing.Size(103, 21);
+            this.CB_Fiche_Sante.TabIndex = 23;
+            this.CB_Fiche_Sante.Text = "Fiche santé";
+            this.CB_Fiche_Sante.UseVisualStyleBackColor = true;
+            // 
             // Inscription_Children
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 793);
+            this.Controls.Add(this.CB_Fiche_Sante);
             this.Controls.Add(this.NUD_Age);
             this.Controls.Add(this.CB_MC);
             this.Controls.Add(this.label9);
@@ -275,5 +287,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox CB_MC;
         private System.Windows.Forms.NumericUpDown NUD_Age;
+        private System.Windows.Forms.CheckBox CB_Fiche_Sante;
     }
 }

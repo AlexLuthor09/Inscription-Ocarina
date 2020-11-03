@@ -25,6 +25,7 @@ namespace Inscription_Ocarina
         public string Remarque ;
         public DateTime date;
         public bool mc;
+        public bool Fiche_Sante;
 
 
         public Inscription_Children()
@@ -40,6 +41,7 @@ namespace Inscription_Ocarina
             Allergies = null;
             Remarque = null;
             mc = false;
+            Fiche_Sante = false;
             date = DateTime.Now;
         }
     
@@ -65,13 +67,14 @@ namespace Inscription_Ocarina
                 if (TB_N_National.Text != "")
                     N_national = Convert.ToInt32(TB_N_National.Text);
                 if (TB_Adresse.Text != "")
-                    adresse = TB_Adresse.Text.Replace(' ','_');
-                bool mc = CB_MC.Checked;
+                    adresse = TB_Adresse.Text;
+                mc = CB_MC.Checked;
+                Fiche_Sante = CB_Fiche_Sante.Checked;
                 if (TB_Allergies.Text != "")
                     Allergies = TB_Allergies.Text;
                 if (TB_Remarques.Text != "")
                     Remarque = TB_Remarques.Text;
-                _Manager.updateChildren(id, nom, prenom, age, date, email, N_national, adresse, mc, Allergies, Remarque);
+                _Manager.updateChildren(id, nom, prenom, age, date, email, N_national, adresse, mc,Fiche_Sante, Allergies, Remarque);
             }
             else
             {
@@ -88,12 +91,13 @@ namespace Inscription_Ocarina
                     N_national = Convert.ToInt32(TB_N_National.Text);
                 if (TB_Adresse.Text != "")
                     adresse = TB_Adresse.Text;
-                bool mc = CB_MC.Checked;
+                mc = CB_MC.Checked;
+                Fiche_Sante = CB_Fiche_Sante.Checked;
                 if (TB_Allergies.Text != "")
                     Allergies = TB_Allergies.Text;
                 if (TB_Remarques.Text != "")
                     Remarque = TB_Remarques.Text;
-                _Manager.addChildren(nom, prenom, age, date, email, N_national, adresse, mc, Allergies, Remarque);
+                _Manager.addChildren(nom, prenom, age, date, email, N_national, adresse, mc,Fiche_Sante, Allergies, Remarque);
             }
            
 
@@ -117,6 +121,7 @@ namespace Inscription_Ocarina
                     TB_Allergies.Text = Allergies;
                     TB_Remarques.Text = Remarque;
                     CB_MC.Checked = mc;
+                    CB_Fiche_Sante.Checked = Fiche_Sante;
                 }
                 catch (Exception ex)
                 {

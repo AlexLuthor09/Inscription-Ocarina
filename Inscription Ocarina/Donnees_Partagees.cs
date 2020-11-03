@@ -18,6 +18,7 @@ namespace Inscription_Ocarina
         public int N_national;
         public string adresse;
         public bool mc;
+        public bool Fiche_Sante;
         public string Allergies;
         public string Remarque;
         public bool modif;

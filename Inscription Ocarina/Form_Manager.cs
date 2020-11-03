@@ -34,22 +34,35 @@ namespace Inscription_Ocarina
         public void OpenInscription_Children(bool modify)
         {
             
-            if (modify)
+            if (modify == true)
             {
-                this.inscription_children.nom = Program.DP.nom;
-                this.inscription_children.prenom = Program.DP.prenom;
-                this.inscription_children.adresse = Program.DP.adresse;
-                this.inscription_children.age = Program.DP.age;
-                this.inscription_children.email = Program.DP.email;
-                this.inscription_children.Allergies = Program.DP.Allergies;
-                this.inscription_children.N_national= Program.DP.N_national;
-                this.inscription_children.Remarque= Program.DP.Remarque;
-                this.inscription_children.date = Program.DP.date;
-                this.inscription_children.mc = Program.DP.mc;
-
-
+                inscription_children.nom = Program.DP.nom;
+                inscription_children.prenom = Program.DP.prenom;
+                inscription_children.adresse = Program.DP.adresse;
+                inscription_children.age = Program.DP.age;
+                inscription_children.email = Program.DP.email;
+                inscription_children.Allergies = Program.DP.Allergies;
+                inscription_children.N_national= Program.DP.N_national;
+                inscription_children.Remarque= Program.DP.Remarque;
+                inscription_children.date = Program.DP.date;
+                inscription_children.mc = Program.DP.mc;
+                inscription_children.Fiche_Sante = Program.DP.Fiche_Sante;
             }
-            this.Current_form = this.inscription_children;
+            else
+            {
+                inscription_children.nom = "";
+                inscription_children.prenom = "";
+                inscription_children.adresse = "";
+                inscription_children.age = 0;
+                inscription_children.email ="";
+                inscription_children.Allergies = "";
+                inscription_children.N_national = 0;
+                inscription_children.Remarque = "";
+                inscription_children.date = DateTime.Now;
+                inscription_children.mc = false;
+                inscription_children.Fiche_Sante = false;
+            }
+            this.Current_form = inscription_children;
             Current_form.ShowDialog();
         }
         public void OpenFirstMove()

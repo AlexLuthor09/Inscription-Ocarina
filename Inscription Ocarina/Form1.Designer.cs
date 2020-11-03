@@ -34,7 +34,6 @@
             this.enfantBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.incriptionOcarinaDataSet = new Inscription_Ocarina.IncriptionOcarinaDataSet();
             this.label1 = new System.Windows.Forms.Label();
-            this.CB_Fiche_Sante = new System.Windows.Forms.CheckBox();
             this.Butt_Modifier_Participant = new System.Windows.Forms.Button();
             this.Butt_Validation = new System.Windows.Forms.Button();
             this.CB_Fin_Plaine = new System.Windows.Forms.CheckBox();
@@ -54,8 +53,10 @@
             this.remarqueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.allergieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.But_Supp_Enfant = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.BUT_Refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -81,6 +82,7 @@
             this.ComboBox_ListOfChildren.Size = new System.Drawing.Size(309, 24);
             this.ComboBox_ListOfChildren.TabIndex = 1;
             this.ComboBox_ListOfChildren.ValueMember = "Id";
+            this.ComboBox_ListOfChildren.SelectedIndexChanged += new System.EventHandler(this.ComboBox_ListOfChildren_SelectedIndexChanged);
             // 
             // enfantBindingSource
             // 
@@ -100,16 +102,6 @@
             this.label1.Size = new System.Drawing.Size(128, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Liste de particiant :";
-            // 
-            // CB_Fiche_Sante
-            // 
-            this.CB_Fiche_Sante.AutoSize = true;
-            this.CB_Fiche_Sante.Location = new System.Drawing.Point(685, 243);
-            this.CB_Fiche_Sante.Name = "CB_Fiche_Sante";
-            this.CB_Fiche_Sante.Size = new System.Drawing.Size(103, 21);
-            this.CB_Fiche_Sante.TabIndex = 3;
-            this.CB_Fiche_Sante.Text = "Fiche santé";
-            this.CB_Fiche_Sante.UseVisualStyleBackColor = true;
             // 
             // Butt_Modifier_Participant
             // 
@@ -144,7 +136,7 @@
             // CB_Payer
             // 
             this.CB_Payer.AutoSize = true;
-            this.CB_Payer.Location = new System.Drawing.Point(685, 270);
+            this.CB_Payer.Location = new System.Drawing.Point(680, 243);
             this.CB_Payer.Name = "CB_Payer";
             this.CB_Payer.Size = new System.Drawing.Size(67, 21);
             this.CB_Payer.TabIndex = 8;
@@ -282,13 +274,6 @@
             this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
             this.adresseDataGridViewTextBoxColumn.Visible = false;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(330, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 22);
-            this.textBox1.TabIndex = 10;
-            // 
             // But_Supp_Enfant
             // 
             this.But_Supp_Enfant.Location = new System.Drawing.Point(630, 166);
@@ -299,19 +284,46 @@
             this.But_Supp_Enfant.UseVisualStyleBackColor = true;
             this.But_Supp_Enfant.Click += new System.EventHandler(this.But_Supp_Enfant_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(330, 41);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(327, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Jour Actuel";
+            // 
+            // BUT_Refresh
+            // 
+            this.BUT_Refresh.Location = new System.Drawing.Point(536, 39);
+            this.BUT_Refresh.Name = "BUT_Refresh";
+            this.BUT_Refresh.Size = new System.Drawing.Size(88, 27);
+            this.BUT_Refresh.TabIndex = 14;
+            this.BUT_Refresh.Text = "Refresh";
+            this.BUT_Refresh.UseVisualStyleBackColor = true;
+            this.BUT_Refresh.Click += new System.EventHandler(this.BUT_Refresh_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BUT_Refresh);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.But_Supp_Enfant);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.CB_Payer);
             this.Controls.Add(this.CB_Fin_Plaine);
             this.Controls.Add(this.Butt_Validation);
             this.Controls.Add(this.Butt_Modifier_Participant);
-            this.Controls.Add(this.CB_Fiche_Sante);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ComboBox_ListOfChildren);
             this.Controls.Add(this.Butt_Add_Children);
@@ -331,7 +343,6 @@
         private System.Windows.Forms.Button Butt_Add_Children;
         private System.Windows.Forms.ComboBox ComboBox_ListOfChildren;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox CB_Fiche_Sante;
         private System.Windows.Forms.Button Butt_Modifier_Participant;
         private System.Windows.Forms.Button Butt_Validation;
         private System.Windows.Forms.CheckBox CB_Fin_Plaine;
@@ -353,8 +364,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn remarqueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn allergieDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button But_Supp_Enfant;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button BUT_Refresh;
     }
 }
 
