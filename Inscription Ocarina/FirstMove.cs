@@ -19,12 +19,17 @@ namespace Inscription_Ocarina
 
         private void Butt_New_week_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Program.DP.FM.OpenMainF();
+            SQL_Manager sql = new SQL_Manager();
+            sql.ClearDataBase();
+            this.Hide();
         }
 
         private void Butt_Current_week_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Program.DP.FM.OpenMainF();
+            
+            this.Hide();
         }
     }
 }

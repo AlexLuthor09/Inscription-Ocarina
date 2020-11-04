@@ -10,18 +10,20 @@ namespace Inscription_Ocarina
 {
     class SQL_Manager
     {
+        private Donnees_Partagees ShareData = Program.DP;
 
-        public SQL_Manager()
+        private string connetionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\Visual Studio\Inscription Ocarina\Inscription Ocarina\IncriptionOcarina.mdf; Integrated Security = True; Connect Timeout = 30";
+        SqlConnection cnn;
+
+        public SQL_Manager() //test de connection
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\Visual Studio\Inscription Ocarina\Inscription Ocarina\IncriptionOcarina.mdf; Integrated Security = True; Connect Timeout = 30";
+
             cnn = new SqlConnection(connetionString);
 
             try
             {
                 cnn.Open();
-                MessageBox.Show("Connection Open ! ");
+                //MessageBox.Show("Connection Open ! ");
                 cnn.Close();
             }
             catch (Exception ex)
@@ -31,9 +33,7 @@ namespace Inscription_Ocarina
         }
         public void addChildren(string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, bool Fiche_Sante, string Allergies, string Remarque)
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\Visual Studio\Inscription Ocarina\Inscription Ocarina\IncriptionOcarina.mdf; Integrated Security = True; Connect Timeout = 30";
+
             cnn = new SqlConnection(connetionString);
 
             string Query = @"INSERT INTO Enfant  (Nom,Prenom,Email,N_Nationam,Date_Naissance,Age,MC,Fiche_Sante,Remarque,Allergie,Adresse)" +
@@ -69,11 +69,9 @@ namespace Inscription_Ocarina
         }
         public void updateChildren(int ID, string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, bool Fiche_Sante, string Allergies, string Remarque)
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\Visual Studio\Inscription Ocarina\Inscription Ocarina\IncriptionOcarina.mdf; Integrated Security = True; Connect Timeout = 30";          
+
             cnn = new SqlConnection(connetionString);
-            
+
             string Query = "UPDATE Enfant SET " +
                 "Nom ='" + nom +
                 "',Prenom ='" + prenom +
@@ -84,9 +82,9 @@ namespace Inscription_Ocarina
                 "',MC ='" + mc +
                 "',Fiche_Sante ='" + Fiche_Sante +
                 "',Remarque ='" + Remarque +
-                "',Allergie ='" + Allergies + 
+                "',Allergie ='" + Allergies +
                 "',Adresse = '" + adresse +
-                "' WHERE Id =" + ID +";";
+                "' WHERE Id =" + ID + ";";
 
             try
             {
@@ -98,7 +96,7 @@ namespace Inscription_Ocarina
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ca marche pas connard car :  "+ ex.Message);
+                MessageBox.Show("Ca marche pas connard car :  " + ex.Message);
             }
             finally
             {
@@ -107,11 +105,9 @@ namespace Inscription_Ocarina
             }
 
         }
-        public void refresh(DataGridView datagridview)
+        public void refresh(DataGridView datagridview, ComboBox combobox)
         {
-            string connetionString = null;
-            SqlConnection cnn;
-            connetionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\Visual Studio\Inscription Ocarina\Inscription Ocarina\IncriptionOcarina.mdf; Integrated Security = True; Connect Timeout = 30";
+
             cnn = new SqlConnection(connetionString);
             string Query = "SELECT * from Enfant";
 
@@ -121,9 +117,16 @@ namespace Inscription_Ocarina
                 SqlDataAdapter da = new SqlDataAdapter(Query, cnn);
                 IncriptionOcarinaDataSet ds = new IncriptionOcarinaDataSet();
                 da.Fill(ds, "Enfant");
-                datagridview.DataSource = ds;
-                datagridview.DataMember = "Enfant";
-                
+
+
+                combobox.DataBindings.Clear();
+                combobox.DataSource = null;
+                combobox.DataSource = ds.Enfant; //attention c'est pour savoir ou aller chercher
+                combobox.DisplayMember = "Nom";
+                combobox.ValueMember = "Id";
+
+                datagridview.DataSource = ds.Enfant;
+
             }
             catch (Exception ex)
             {
@@ -134,6 +137,56 @@ namespace Inscription_Ocarina
 
                 cnn.Close();
             }
+        }
+        public void ClearDataBase()
+        {
+            cnn = new SqlConnection(connetionString);
+            string Query = "TRUNCATE TABLE Enfant";
+
+
+            try
+            {
+                cnn.Open();
+                SqlCommand clear = new SqlCommand(Query, cnn);
+                if (clear.ExecuteNonQuery() == 0)
+                    throw new ApplicationException("y a r de modif !");
+                else MessageBox.Show("Suppression confirmed");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ca marche pas connard car :  " + ex.Message);
+            }
+            finally
+            {
+
+                cnn.Close();
+            }
+
+        }
+        public void suppChild(int Id)
+        {
+            cnn = new SqlConnection(connetionString);
+            string Query = "DELETE from Enfant where Id ="+Id;
+
+
+            try
+            {
+                cnn.Open();
+                SqlCommand clear = new SqlCommand(Query, cnn);
+                if (clear.ExecuteNonQuery() == 0)
+                    throw new ApplicationException("y a r de modif !");
+                else MessageBox.Show("Suppression de l'Id : "+Id+" confirmed");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ca marche pas connard car :  " + ex.Message);
+            }
+            finally
+            {
+
+                cnn.Close();
+            }
+
         }
     }
 }

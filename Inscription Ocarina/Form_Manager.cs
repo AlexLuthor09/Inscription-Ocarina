@@ -31,36 +31,49 @@ namespace Inscription_Ocarina
             this.Current_form = this.mainform;
             Current_form.Show();
         }
-        public void OpenInscription_Children(bool modify)
+        private void OpenInscription_Children_modif()
         {
+            inscription_children.nom = Program.DP.nom;
+            inscription_children.prenom = Program.DP.prenom;
+            inscription_children.adresse = Program.DP.adresse;
+            inscription_children.age = Program.DP.age;
+            inscription_children.email = Program.DP.email;
+            inscription_children.Allergies = Program.DP.Allergies;
+            inscription_children.N_national= Program.DP.N_national;
+            inscription_children.Remarque= Program.DP.Remarque;
+            inscription_children.date = Program.DP.date;
+            inscription_children.mc = Program.DP.mc;
+            inscription_children.Fiche_Sante = Program.DP.Fiche_Sante;
             
-            if (modify == true)
+        }
+        private void OpenInscription_Children_Add()
+        {
+
+            Program.DP.nom  = "";
+            Program.DP.prenom = "";
+            Program.DP.adresse = "";
+            Program.DP.age  = 0;
+            Program.DP.email = "";
+            Program.DP.Allergies = "";
+            Program.DP.N_national = 0;
+            Program.DP.Remarque  = "";
+            Program.DP.date = DateTime.Now;
+            Program.DP.mc = false;
+            Program.DP.Fiche_Sante  = false;
+           
+            
+        }
+        public void OpenInscription_Children(bool modif)
+        {
+
+            if(modif)
             {
-                inscription_children.nom = Program.DP.nom;
-                inscription_children.prenom = Program.DP.prenom;
-                inscription_children.adresse = Program.DP.adresse;
-                inscription_children.age = Program.DP.age;
-                inscription_children.email = Program.DP.email;
-                inscription_children.Allergies = Program.DP.Allergies;
-                inscription_children.N_national= Program.DP.N_national;
-                inscription_children.Remarque= Program.DP.Remarque;
-                inscription_children.date = Program.DP.date;
-                inscription_children.mc = Program.DP.mc;
-                inscription_children.Fiche_Sante = Program.DP.Fiche_Sante;
+                OpenInscription_Children_modif();
+                modif = false;
             }
             else
             {
-                inscription_children.nom = "";
-                inscription_children.prenom = "";
-                inscription_children.adresse = "";
-                inscription_children.age = 0;
-                inscription_children.email ="";
-                inscription_children.Allergies = "";
-                inscription_children.N_national = 0;
-                inscription_children.Remarque = "";
-                inscription_children.date = DateTime.Now;
-                inscription_children.mc = false;
-                inscription_children.Fiche_Sante = false;
+                OpenInscription_Children_Add();
             }
             this.Current_form = inscription_children;
             Current_form.ShowDialog();

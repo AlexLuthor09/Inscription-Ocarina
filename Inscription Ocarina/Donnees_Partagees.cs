@@ -10,19 +10,20 @@ namespace Inscription_Ocarina
     class Donnees_Partagees
     {
         internal Form_Manager FM { get; set; }
-        public string nom;
-        public string prenom;
-        public int age;
-        public DateTime date;
-        public string email;
-        public int N_national;
-        public string adresse;
-        public bool mc;
-        public bool Fiche_Sante;
-        public string Allergies;
-        public string Remarque;
+        public string nom = null;
+        public string prenom = null;
+        public int age =0;
+        public DateTime date =DateTime.Now;
+        public string email =null;
+        public int N_national=0;
+        public string adresse =null;
+        public bool mc = false;
+        public bool Fiche_Sante = false;
+        public string Allergies = null;
+        public string Remarque = null;
         public bool modif;
         public int id;
+        
     }
 
 }

@@ -31,18 +31,7 @@ namespace Inscription_Ocarina
         public Inscription_Children()
         {
             InitializeComponent();
-
-            nom = null;
-            prenom = null;
-            age = 0;
-            N_national = 0;
-            email = null;
-            adresse = null;
-            Allergies = null;
-            Remarque = null;
-            mc = false;
-            Fiche_Sante = false;
-            date = DateTime.Now;
+   
         }
     
 
@@ -111,21 +100,21 @@ namespace Inscription_Ocarina
             {
                 try
                 {
-                    TB_Name.Text = nom;
-                    TB_Firstname.Text = prenom;
-                    NUD_Age.Value = age;
-                    DTP_Naissance.Value = date;
-                    TB_Email.Text = email;
-                    TB_N_National.Text = N_national.ToString();
-                    TB_Adresse.Text = adresse;
-                    TB_Allergies.Text = Allergies;
-                    TB_Remarques.Text = Remarque;
-                    CB_MC.Checked = mc;
-                    CB_Fiche_Sante.Checked = Fiche_Sante;
+                    TB_Name.Text = Program.DP.nom;
+                    TB_Firstname.Text= Program.DP.prenom;
+                    TB_Adresse.Text = Program.DP.adresse;
+                    NUD_Age.Value = Program.DP.age;
+                    TB_Email.Text = Program.DP.email;
+                    TB_Allergies.Text = Program.DP.Allergies;
+                    TB_N_National.Text = Program.DP.N_national.ToString();
+                    TB_Remarques.Text = Program.DP.Remarque;
+                    DTP_Naissance.Value = Program.DP.date;
+                    CB_MC.Checked = Program.DP.mc;
+                    CB_Fiche_Sante.Checked = Program.DP.Fiche_Sante;   
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show(ex.Message);
                 }
             }
         }

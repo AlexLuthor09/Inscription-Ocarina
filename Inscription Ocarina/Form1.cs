@@ -13,9 +13,7 @@ namespace Inscription_Ocarina
     public partial class MainForm : Form
     {
         Donnees_Partagees ShareData = Program.DP;
-        public static int DATA_id_current;
-        
-
+        SQL_Manager _Manager;
         public MainForm()
         {
             InitializeComponent();
@@ -24,7 +22,8 @@ namespace Inscription_Ocarina
 
         private void Butt_Add_Children_Click(object sender, EventArgs e)
         {
-            Program.DP.FM.OpenInscription_Children(ShareData.modif = false);
+            ShareData.modif = false;
+            Program.DP.FM.OpenInscription_Children(ShareData.modif);
             
         }
 
@@ -46,8 +45,7 @@ namespace Inscription_Ocarina
             try
             {
                 
-
-                // faire attention au string qui sont entre [] car ils font appelle au nom des collone dans la table
+                //faire attention au string qui sont entre[] car ils font appelle au nom des collone dans la table
 
                 ShareData.id = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()); // on récupère l'id
                 ShareData.nom = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Nom"].ToString().Trim());
@@ -61,10 +59,11 @@ namespace Inscription_Ocarina
                 ShareData.date = Convert.ToDateTime(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Date_Naissance"].ToString().Trim());
                 ShareData.email = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Email"].ToString().Trim());
                 ShareData.Fiche_Sante = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Fiche_Sante"].ToString().Trim());
+
                 ShareData.FM.OpenInscription_Children(ShareData.modif = true);
-               
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Veuillez Rééssayer : ERRROR : " + ex.Message);
             }
@@ -73,19 +72,28 @@ namespace Inscription_Ocarina
 
         private void But_Supp_Enfant_Click(object sender, EventArgs e)
         {
-
+            _Manager = new SQL_Manager();
+            _Manager.suppChild(Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()));
         }
 
-        private void ComboBox_ListOfChildren_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
+        
 
         private void BUT_Refresh_Click(object sender, EventArgs e)
         {
-            SQL_Manager _Manager = new SQL_Manager();
-            _Manager.refresh(dataGridView1);
+            _Manager = new SQL_Manager();
+            _Manager.refresh(dataGridView1,ComboBox_ListOfChildren);
           
+        }
+
+        private void CB_Payer_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            _Manager = new SQL_Manager();
+            _Manager.refresh(dataGridView1, ComboBox_ListOfChildren);
         }
     }
 }
