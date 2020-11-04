@@ -44,48 +44,48 @@ namespace Inscription_Ocarina
             {
                 int id = Program.DP.id;
 
-                if (TB_Name.Text != "")
-                    nom = TB_Name.Text;
-                if (TB_Firstname.Text != "")
-                    prenom = TB_Firstname.Text;
-                if (NUD_Age.Value != 0)
-                    age = Convert.ToInt32(NUD_Age.Value);
-                date = DTP_Naissance.Value;
-                if (TB_Email.Text != "")
-                    email = TB_Email.Text;
-                if (TB_N_National.Text != "")
-                    N_national = Convert.ToInt32(TB_N_National.Text);
-                if (TB_Adresse.Text != "")
-                    adresse = TB_Adresse.Text;
+               
+                nom = TB_Name.Text.Trim();
+                prenom = TB_Firstname.Text.Trim();              
+                age = Convert.ToInt32(NUD_Age.Value);
+                if (date.Date == DateTime.Now.Date)
+                    date = DateTime.MinValue;
+                else
+                date = DTP_Naissance.Value;               
+                email = TB_Email.Text.Trim();
+                if (TB_N_National.Text.Trim() == "")
+                    N_national = 101;
+                else
+                N_national = Convert.ToInt32(TB_N_National.Text.Trim());             
+                adresse = TB_Adresse.Text.Trim();
                 mc = CB_MC.Checked;
                 Fiche_Sante = CB_Fiche_Sante.Checked;
-                if (TB_Allergies.Text != "")
-                    Allergies = TB_Allergies.Text;
-                if (TB_Remarques.Text != "")
-                    Remarque = TB_Remarques.Text;
+                Allergies = TB_Allergies.Text.Trim();                
+                Remarque = TB_Remarques.Text.Trim();
+               
+
                 _Manager.updateChildren(id, nom, prenom, age, date, email, N_national, adresse, mc,Fiche_Sante, Allergies, Remarque);
             }
             else
             {
-                if (TB_Name.Text != "")
-                    nom = TB_Name.Text;
-                if (TB_Firstname.Text != "")
-                    prenom = TB_Firstname.Text;
-                if (NUD_Age.Value != 0)
-                    age = Convert.ToInt32(NUD_Age.Value);
+                nom = TB_Name.Text.Trim();
+                prenom = TB_Firstname.Text.Trim();
+                age = Convert.ToInt32(NUD_Age.Value);
+                if (date.Date == DateTime.Now.Date)
+                    date = DateTime.MinValue;
+                else
                 date = DTP_Naissance.Value;
-                if (TB_Email.Text != "")
-                    email = TB_Email.Text;
-                if (TB_N_National.Text != "")
-                    N_national = Convert.ToInt32(TB_N_National.Text);
-                if (TB_Adresse.Text != "")
-                    adresse = TB_Adresse.Text;
+                email = TB_Email.Text.Trim();
+                if (TB_N_National.Text.Trim() == "")
+                    N_national = 101;
+                else
+                N_national = Convert.ToInt32(TB_N_National.Text.Trim());
+                adresse = TB_Adresse.Text.Trim();
                 mc = CB_MC.Checked;
                 Fiche_Sante = CB_Fiche_Sante.Checked;
-                if (TB_Allergies.Text != "")
-                    Allergies = TB_Allergies.Text;
-                if (TB_Remarques.Text != "")
-                    Remarque = TB_Remarques.Text;
+                Allergies = TB_Allergies.Text.Trim();
+                Remarque = TB_Remarques.Text.Trim();
+
                 _Manager.addChildren(nom, prenom, age, date, email, N_national, adresse, mc,Fiche_Sante, Allergies, Remarque);
             }
            

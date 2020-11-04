@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,8 +43,8 @@ namespace Inscription_Ocarina
             try
             {
                 cnn.Open();
-                SqlCommand addChild = new SqlCommand(Query, cnn);
-                addChild.Parameters.AddWithValue("@NOM", nom);
+                SqlCommand addChild = new SqlCommand(Query, cnn);                
+                addChild.Parameters.AddWithValue("@NOM", nom);               
                 addChild.Parameters.AddWithValue("@PRENOM", prenom);
                 addChild.Parameters.AddWithValue("@EMAIL", email);
                 addChild.Parameters.AddWithValue("@N_NATIONAM", N_national);
@@ -110,7 +111,7 @@ namespace Inscription_Ocarina
 
             cnn = new SqlConnection(connetionString);
             string Query = "SELECT * from Enfant";
-
+            
             try
             {
                 cnn.Open();
@@ -188,5 +189,6 @@ namespace Inscription_Ocarina
             }
 
         }
+       
     }
 }
