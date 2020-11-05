@@ -11,10 +11,11 @@ namespace Inscription_Ocarina
     {
         internal Form_Manager FM { get; set; }
         internal SQL_Manager _Manager { get; set; }
+
         public string nom = null;
         public string prenom = null;
         public int age =0;
-        public DateTime date =DateTime.Now;
+        public DateTime date =DateTime.Now.Date;       
         public string email =null;
         public int N_national=0;
         public string adresse =null;
@@ -22,9 +23,16 @@ namespace Inscription_Ocarina
         public bool Fiche_Sante = false;
         public string Allergies = null;
         public string Remarque = null;
-        public bool modif;
         public int id;
-        
+
+        public bool modif;
+
+        public DateTime jour_actuel= DateTime.Now.Date;
+        public bool present = false;
+        public bool payer = false;
+
+
+
     }
 
 }

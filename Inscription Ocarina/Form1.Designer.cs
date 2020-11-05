@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.Butt_Add_Children = new System.Windows.Forms.Button();
             this.ComboBox_ListOfChildren = new System.Windows.Forms.ComboBox();
-            this.enfantBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.incriptionOcarinaDataSet = new Inscription_Ocarina.IncriptionOcarinaDataSet();
+            this.enfantBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.Butt_Modifier_Participant = new System.Windows.Forms.Button();
             this.Butt_Validation = new System.Windows.Forms.Button();
@@ -40,25 +40,27 @@
             this.CB_Payer = new System.Windows.Forms.CheckBox();
             this.enfantTableAdapter = new Inscription_Ocarina.IncriptionOcarinaDataSetTableAdapters.EnfantTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prenomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nNationamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateNaissanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mCDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.prixDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nbrJourDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remarqueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.allergieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.But_Supp_Enfant = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.BUT_Refresh = new System.Windows.Forms.Button();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allergieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remarqueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nbrJourDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prixDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mCDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateNaissanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nNationamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prenomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).BeginInit();
+            this.CB_Present = new System.Windows.Forms.CheckBox();
+            this.BUT_Quitter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,15 +85,15 @@
             this.ComboBox_ListOfChildren.TabIndex = 1;
             this.ComboBox_ListOfChildren.ValueMember = "Enfant.Id";
             // 
-            // enfantBindingSource
-            // 
-            this.enfantBindingSource.DataMember = "Enfant";
-            this.enfantBindingSource.DataSource = this.incriptionOcarinaDataSet;
-            // 
             // incriptionOcarinaDataSet
             // 
             this.incriptionOcarinaDataSet.DataSetName = "IncriptionOcarinaDataSet";
             this.incriptionOcarinaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // enfantBindingSource
+            // 
+            this.enfantBindingSource.DataMember = "Enfant";
+            this.enfantBindingSource.DataSource = this.incriptionOcarinaDataSet;
             // 
             // label1
             // 
@@ -135,7 +137,7 @@
             // CB_Payer
             // 
             this.CB_Payer.AutoSize = true;
-            this.CB_Payer.Location = new System.Drawing.Point(844, 246);
+            this.CB_Payer.Location = new System.Drawing.Point(813, 246);
             this.CB_Payer.Name = "CB_Payer";
             this.CB_Payer.Size = new System.Drawing.Size(67, 21);
             this.CB_Payer.TabIndex = 8;
@@ -178,6 +180,105 @@
             this.dataGridView1.Size = new System.Drawing.Size(773, 369);
             this.dataGridView1.TabIndex = 9;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nomDataGridViewTextBoxColumn
+            // 
+            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
+            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
+            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
+            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prenomDataGridViewTextBoxColumn
+            // 
+            this.prenomDataGridViewTextBoxColumn.DataPropertyName = "Prenom";
+            this.prenomDataGridViewTextBoxColumn.HeaderText = "Prenom";
+            this.prenomDataGridViewTextBoxColumn.Name = "prenomDataGridViewTextBoxColumn";
+            this.prenomDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nNationamDataGridViewTextBoxColumn
+            // 
+            this.nNationamDataGridViewTextBoxColumn.DataPropertyName = "N_Nationam";
+            this.nNationamDataGridViewTextBoxColumn.HeaderText = "N_Nationam";
+            this.nNationamDataGridViewTextBoxColumn.Name = "nNationamDataGridViewTextBoxColumn";
+            this.nNationamDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nNationamDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateNaissanceDataGridViewTextBoxColumn
+            // 
+            this.dateNaissanceDataGridViewTextBoxColumn.DataPropertyName = "Date_Naissance";
+            this.dateNaissanceDataGridViewTextBoxColumn.HeaderText = "Date_Naissance";
+            this.dateNaissanceDataGridViewTextBoxColumn.Name = "dateNaissanceDataGridViewTextBoxColumn";
+            this.dateNaissanceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateNaissanceDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // mCDataGridViewCheckBoxColumn
+            // 
+            this.mCDataGridViewCheckBoxColumn.DataPropertyName = "MC";
+            this.mCDataGridViewCheckBoxColumn.HeaderText = "MC";
+            this.mCDataGridViewCheckBoxColumn.Name = "mCDataGridViewCheckBoxColumn";
+            this.mCDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // prixDataGridViewTextBoxColumn
+            // 
+            this.prixDataGridViewTextBoxColumn.DataPropertyName = "Prix";
+            this.prixDataGridViewTextBoxColumn.HeaderText = "Prix";
+            this.prixDataGridViewTextBoxColumn.Name = "prixDataGridViewTextBoxColumn";
+            this.prixDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nbrJourDataGridViewTextBoxColumn
+            // 
+            this.nbrJourDataGridViewTextBoxColumn.DataPropertyName = "Nbr_Jour";
+            this.nbrJourDataGridViewTextBoxColumn.HeaderText = "Nbr_Jour";
+            this.nbrJourDataGridViewTextBoxColumn.Name = "nbrJourDataGridViewTextBoxColumn";
+            this.nbrJourDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nbrJourDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // remarqueDataGridViewTextBoxColumn
+            // 
+            this.remarqueDataGridViewTextBoxColumn.DataPropertyName = "Remarque";
+            this.remarqueDataGridViewTextBoxColumn.HeaderText = "Remarque";
+            this.remarqueDataGridViewTextBoxColumn.Name = "remarqueDataGridViewTextBoxColumn";
+            this.remarqueDataGridViewTextBoxColumn.ReadOnly = true;
+            this.remarqueDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // allergieDataGridViewTextBoxColumn
+            // 
+            this.allergieDataGridViewTextBoxColumn.DataPropertyName = "Allergie";
+            this.allergieDataGridViewTextBoxColumn.HeaderText = "Allergie";
+            this.allergieDataGridViewTextBoxColumn.Name = "allergieDataGridViewTextBoxColumn";
+            this.allergieDataGridViewTextBoxColumn.ReadOnly = true;
+            this.allergieDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.adresseDataGridViewTextBoxColumn.Visible = false;
+            // 
             // But_Supp_Enfant
             // 
             this.But_Supp_Enfant.Location = new System.Drawing.Point(794, 169);
@@ -214,110 +315,33 @@
             this.BUT_Refresh.UseVisualStyleBackColor = true;
             this.BUT_Refresh.Click += new System.EventHandler(this.BUT_Refresh_Click);
             // 
-            // adresseDataGridViewTextBoxColumn
+            // CB_Present
             // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            this.adresseDataGridViewTextBoxColumn.Visible = false;
+            this.CB_Present.AutoSize = true;
+            this.CB_Present.Location = new System.Drawing.Point(813, 273);
+            this.CB_Present.Name = "CB_Present";
+            this.CB_Present.Size = new System.Drawing.Size(79, 21);
+            this.CB_Present.TabIndex = 15;
+            this.CB_Present.Text = "Present";
+            this.CB_Present.UseVisualStyleBackColor = true;
+            this.CB_Present.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // allergieDataGridViewTextBoxColumn
+            // BUT_Quitter
             // 
-            this.allergieDataGridViewTextBoxColumn.DataPropertyName = "Allergie";
-            this.allergieDataGridViewTextBoxColumn.HeaderText = "Allergie";
-            this.allergieDataGridViewTextBoxColumn.Name = "allergieDataGridViewTextBoxColumn";
-            this.allergieDataGridViewTextBoxColumn.ReadOnly = true;
-            this.allergieDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // remarqueDataGridViewTextBoxColumn
-            // 
-            this.remarqueDataGridViewTextBoxColumn.DataPropertyName = "Remarque";
-            this.remarqueDataGridViewTextBoxColumn.HeaderText = "Remarque";
-            this.remarqueDataGridViewTextBoxColumn.Name = "remarqueDataGridViewTextBoxColumn";
-            this.remarqueDataGridViewTextBoxColumn.ReadOnly = true;
-            this.remarqueDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nbrJourDataGridViewTextBoxColumn
-            // 
-            this.nbrJourDataGridViewTextBoxColumn.DataPropertyName = "Nbr_Jour";
-            this.nbrJourDataGridViewTextBoxColumn.HeaderText = "Nbr_Jour";
-            this.nbrJourDataGridViewTextBoxColumn.Name = "nbrJourDataGridViewTextBoxColumn";
-            this.nbrJourDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nbrJourDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // prixDataGridViewTextBoxColumn
-            // 
-            this.prixDataGridViewTextBoxColumn.DataPropertyName = "Prix";
-            this.prixDataGridViewTextBoxColumn.HeaderText = "Prix";
-            this.prixDataGridViewTextBoxColumn.Name = "prixDataGridViewTextBoxColumn";
-            this.prixDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mCDataGridViewCheckBoxColumn
-            // 
-            this.mCDataGridViewCheckBoxColumn.DataPropertyName = "MC";
-            this.mCDataGridViewCheckBoxColumn.HeaderText = "MC";
-            this.mCDataGridViewCheckBoxColumn.Name = "mCDataGridViewCheckBoxColumn";
-            this.mCDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // ageDataGridViewTextBoxColumn
-            // 
-            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
-            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
-            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
-            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateNaissanceDataGridViewTextBoxColumn
-            // 
-            this.dateNaissanceDataGridViewTextBoxColumn.DataPropertyName = "Date_Naissance";
-            this.dateNaissanceDataGridViewTextBoxColumn.HeaderText = "Date_Naissance";
-            this.dateNaissanceDataGridViewTextBoxColumn.Name = "dateNaissanceDataGridViewTextBoxColumn";
-            this.dateNaissanceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateNaissanceDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nNationamDataGridViewTextBoxColumn
-            // 
-            this.nNationamDataGridViewTextBoxColumn.DataPropertyName = "N_Nationam";
-            this.nNationamDataGridViewTextBoxColumn.HeaderText = "N_Nationam";
-            this.nNationamDataGridViewTextBoxColumn.Name = "nNationamDataGridViewTextBoxColumn";
-            this.nNationamDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nNationamDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            this.emailDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // prenomDataGridViewTextBoxColumn
-            // 
-            this.prenomDataGridViewTextBoxColumn.DataPropertyName = "Prenom";
-            this.prenomDataGridViewTextBoxColumn.HeaderText = "Prenom";
-            this.prenomDataGridViewTextBoxColumn.Name = "prenomDataGridViewTextBoxColumn";
-            this.prenomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nomDataGridViewTextBoxColumn
-            // 
-            this.nomDataGridViewTextBoxColumn.DataPropertyName = "Nom";
-            this.nomDataGridViewTextBoxColumn.HeaderText = "Nom";
-            this.nomDataGridViewTextBoxColumn.Name = "nomDataGridViewTextBoxColumn";
-            this.nomDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.BUT_Quitter.Location = new System.Drawing.Point(629, 6);
+            this.BUT_Quitter.Name = "BUT_Quitter";
+            this.BUT_Quitter.Size = new System.Drawing.Size(159, 57);
+            this.BUT_Quitter.TabIndex = 16;
+            this.BUT_Quitter.Text = "Quitter";
+            this.BUT_Quitter.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(964, 450);
+            this.Controls.Add(this.BUT_Quitter);
+            this.Controls.Add(this.CB_Present);
             this.Controls.Add(this.BUT_Refresh);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
@@ -334,8 +358,8 @@
             this.Text = "Inscription";
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -372,6 +396,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn remarqueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn allergieDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox CB_Present;
+        private System.Windows.Forms.Button BUT_Quitter;
     }
 }
 

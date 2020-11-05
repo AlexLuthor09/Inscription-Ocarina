@@ -12,6 +12,8 @@ namespace Inscription_Ocarina
     class SQL_Manager
     {
         private Donnees_Partagees ShareData = Program.DP;
+        SqlDouble prixmc = 1.5;
+        SqlDouble nprixmc = 6.5;
 
         private string connetionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\Visual Studio\Inscription Ocarina\Inscription Ocarina\IncriptionOcarina.mdf; Integrated Security = True; Connect Timeout = 30";
         SqlConnection cnn;
@@ -39,8 +41,7 @@ namespace Inscription_Ocarina
 
             string Query = @"INSERT INTO Enfant  (Nom,Prenom,Email,N_Nationam,Date_Naissance,Age,MC,Fiche_Sante,Remarque,Allergie,Adresse,Prix)" +
                 "SELECT @NOM,@PRENOM,@EMAIL,@N_NATIONAM,@DATE_NAISSANCE,@AGE,@MC,@FICHE_SANTE,@REMARQUE,@ALLERGIE,@ADRESSE,@PRIX";
-            SqlDouble prixmc = 1.5;           
-            SqlDouble nprixmc = 6.5;
+            
 
             SqlDateTime da = date;
             
@@ -81,10 +82,7 @@ namespace Inscription_Ocarina
         public void updateChildren(int ID, string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, bool Fiche_Sante, string Allergies, string Remarque)
         {
 
-            cnn = new SqlConnection(connetionString);
-
-            SqlDouble prixmc = 1.5;
-            SqlDouble nprixmc = 6.5;
+            cnn = new SqlConnection(connetionString);        
             SqlDouble p;
             if (mc)
                  p = prixmc;
