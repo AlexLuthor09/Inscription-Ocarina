@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,9 +37,13 @@ namespace Inscription_Ocarina
 
             cnn = new SqlConnection(connetionString);
 
-            string Query = @"INSERT INTO Enfant  (Nom,Prenom,Email,N_Nationam,Date_Naissance,Age,MC,Fiche_Sante,Remarque,Allergie,Adresse)" +
-                "SELECT @NOM,@PRENOM,@EMAIL,@N_NATIONAM,@DATE_NAISSANCE,@AGE,@MC,@FICHE_SANTE,@REMARQUE,@ALLERGIE,@ADRESSE";
+            string Query = @"INSERT INTO Enfant  (Nom,Prenom,Email,N_Nationam,Date_Naissance,Age,MC,Fiche_Sante,Remarque,Allergie,Adresse,Prix)" +
+                "SELECT @NOM,@PRENOM,@EMAIL,@N_NATIONAM,@DATE_NAISSANCE,@AGE,@MC,@FICHE_SANTE,@REMARQUE,@ALLERGIE,@ADRESSE,@PRIX";
+            SqlDouble prixmc = 1.5;           
+            SqlDouble nprixmc = 6.5;
 
+            SqlDateTime da = date;
+            
             try
             {
              
@@ -48,13 +53,18 @@ namespace Inscription_Ocarina
                 addChild.Parameters.AddWithValue("@PRENOM", prenom);
                 addChild.Parameters.AddWithValue("@EMAIL", email);
                 addChild.Parameters.AddWithValue("@N_NATIONAM", N_national);
-                addChild.Parameters.AddWithValue("@DATE_NAISSANCE", date);
+                addChild.Parameters.AddWithValue("@DATE_NAISSANCE", da);
                 addChild.Parameters.AddWithValue("@AGE", age);
-                addChild.Parameters.AddWithValue("@MC", mc);
+                addChild.Parameters.AddWithValue("@MC", mc);               
                 addChild.Parameters.AddWithValue("@FICHE_SANTE", Fiche_Sante);
                 addChild.Parameters.AddWithValue("@REMARQUE", Remarque);
                 addChild.Parameters.AddWithValue("@ALLERGIE", Allergies);
                 addChild.Parameters.AddWithValue("@ADRESSE", adresse);
+                if (mc)
+                    addChild.Parameters.AddWithValue("@PRIX", prixmc);
+
+                else
+                    addChild.Parameters.AddWithValue("@PRIX", nprixmc);
                 if (addChild.ExecuteNonQuery() == 0)
                     throw new ApplicationException("Aucune ligne insérée, vérifiez les paramètres!");
             }
@@ -73,15 +83,26 @@ namespace Inscription_Ocarina
 
             cnn = new SqlConnection(connetionString);
 
+            SqlDouble prixmc = 1.5;
+            SqlDouble nprixmc = 6.5;
+            SqlDouble p;
+            if (mc)
+                 p = prixmc;
+
+            else
+                p = nprixmc;
+
+            SqlDateTime da = date;
             string Query = "UPDATE Enfant SET " +
                 "Nom ='" + nom +
                 "',Prenom ='" + prenom +
                 "',Email ='" + age +
                 "',N_Nationam ='" + N_national +
-                "',Date_Naissance ='" + date.ToString("yyyy-MM-dd HH:mm:ss.fff") +
+                "',Date_Naissance ='" + da +
                 "',Age ='" + age +
                 "',MC ='" + mc +
                 "',Fiche_Sante ='" + Fiche_Sante +
+                "',Prix ='"+ p.ToSqlDecimal() +
                 "',Remarque ='" + Remarque +
                 "',Allergie ='" + Allergies +
                 "',Adresse = '" + adresse +

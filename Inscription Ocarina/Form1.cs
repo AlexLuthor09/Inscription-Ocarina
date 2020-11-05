@@ -71,8 +71,12 @@ namespace Inscription_Ocarina
         }
 
         private void But_Supp_Enfant_Click(object sender, EventArgs e)
-        {           
-            _Manager.suppChild(Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()));
+        {
+            DialogResult dialogResult = MessageBox.Show("Es-tu sûr de vouloir supprimer cet enfant ? ", "Supprimer", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _Manager.suppChild(Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()));
+            }
         }
 
         

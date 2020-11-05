@@ -167,6 +167,7 @@
             this.TB_N_National.Name = "TB_N_National";
             this.TB_N_National.Size = new System.Drawing.Size(383, 22);
             this.TB_N_National.TabIndex = 17;
+            this.TB_N_National.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_N_National_KeyPress);
             // 
             // label3
             // 
