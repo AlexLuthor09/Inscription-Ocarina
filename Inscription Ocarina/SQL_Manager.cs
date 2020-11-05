@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,7 +28,7 @@ namespace Inscription_Ocarina
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can not open connection ! \n " + ex);
+                MessageBox.Show("On a pas pu ce connecter a la database ! \n " + ex);
             }
         }
         public void addChildren(string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, bool Fiche_Sante, string Allergies, string Remarque)
@@ -42,6 +41,7 @@ namespace Inscription_Ocarina
 
             try
             {
+             
                 cnn.Open();
                 SqlCommand addChild = new SqlCommand(Query, cnn);                
                 addChild.Parameters.AddWithValue("@NOM", nom);               

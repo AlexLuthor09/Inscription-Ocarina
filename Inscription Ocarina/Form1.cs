@@ -14,6 +14,7 @@ namespace Inscription_Ocarina
     {
         Donnees_Partagees ShareData = Program.DP;
         SQL_Manager _Manager;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace Inscription_Ocarina
         private void Butt_Add_Children_Click(object sender, EventArgs e)
         {
             ShareData.modif = false;
-            Program.DP.FM.OpenInscription_Children(ShareData.modif);
+            Program.DP.FM.OpenInscription_Children();
             
         }
 
@@ -60,7 +61,8 @@ namespace Inscription_Ocarina
                 ShareData.email = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Email"].ToString().Trim());
                 ShareData.Fiche_Sante = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Fiche_Sante"].ToString().Trim());
 
-                ShareData.FM.OpenInscription_Children(ShareData.modif = true);
+                ShareData.modif = true;
+                ShareData.FM.OpenInscription_Children();
 
             }
             catch (Exception ex)

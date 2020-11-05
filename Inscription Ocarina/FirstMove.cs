@@ -19,9 +19,12 @@ namespace Inscription_Ocarina
 
         private void Butt_New_week_Click(object sender, EventArgs e)
         {
-            Program.DP.FM.OpenMainF();
+            
             SQL_Manager sql = new SQL_Manager();
             sql.ClearDataBase();
+
+            Program.DP.FM.OpenMainF();
+           
             this.Hide();
         }
 

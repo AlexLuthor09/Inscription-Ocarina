@@ -63,20 +63,21 @@ namespace Inscription_Ocarina
            
             
         }
-        public void OpenInscription_Children(bool modif)
+        public void OpenInscription_Children()
         {
 
-            if(modif)
+            if(Program.DP.modif)
             {
-                OpenInscription_Children_modif();
-                modif = false;
+                OpenInscription_Children_modif();    
             }
             else
             {
                 OpenInscription_Children_Add();
             }
+            
             this.Current_form = inscription_children;
             Current_form.ShowDialog();
+            
         }
         public void OpenFirstMove()
         {

@@ -95,28 +95,27 @@ namespace Inscription_Ocarina
 
         private void Inscription_Children_Load(object sender, EventArgs e)
         {
-            
-            if (Program.DP.modif)
+
+            try
             {
-                try
-                {
-                    TB_Name.Text = Program.DP.nom;
-                    TB_Firstname.Text= Program.DP.prenom;
-                    TB_Adresse.Text = Program.DP.adresse;
-                    NUD_Age.Value = Program.DP.age;
-                    TB_Email.Text = Program.DP.email;
-                    TB_Allergies.Text = Program.DP.Allergies;
-                    TB_N_National.Text = Program.DP.N_national.ToString();
-                    TB_Remarques.Text = Program.DP.Remarque;
-                    DTP_Naissance.Value = Program.DP.date;
-                    CB_MC.Checked = Program.DP.mc;
-                    CB_Fiche_Sante.Checked = Program.DP.Fiche_Sante;   
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                TB_Name.Text = Program.DP.nom;
+                TB_Firstname.Text = Program.DP.prenom;
+                TB_Adresse.Text = Program.DP.adresse;
+                NUD_Age.Value = Program.DP.age;
+                TB_Email.Text = Program.DP.email;
+                TB_Allergies.Text = Program.DP.Allergies;
+                TB_N_National.Text = Program.DP.N_national.ToString();
+                TB_Remarques.Text = Program.DP.Remarque;
+                DTP_Naissance.Value = Program.DP.date;
+                CB_MC.Checked = Program.DP.mc;
+                CB_Fiche_Sante.Checked = Program.DP.Fiche_Sante;
+                Program.DP.modif = false;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }
