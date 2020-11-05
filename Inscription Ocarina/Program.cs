@@ -19,8 +19,9 @@ namespace Inscription_Ocarina
             Application.SetCompatibleTextRenderingDefault(false);
 
             Form_Manager form_manager = new Form_Manager();
-
+            SQL_Manager _Manager = new SQL_Manager();
             DP.FM = form_manager;
+            DP._Manager = _Manager;
             DP.FM.Creation();
 
             Application.Run(DP.FM.Current_form);

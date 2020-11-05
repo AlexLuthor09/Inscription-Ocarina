@@ -10,6 +10,7 @@ namespace Inscription_Ocarina
     class Donnees_Partagees
     {
         internal Form_Manager FM { get; set; }
+        internal SQL_Manager _Manager { get; set; }
         public string nom = null;
         public string prenom = null;
         public int age =0;

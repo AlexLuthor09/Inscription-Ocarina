@@ -12,8 +12,10 @@ namespace Inscription_Ocarina
 {
     public partial class MainForm : Form
     {
-        Donnees_Partagees ShareData = Program.DP;
-        SQL_Manager _Manager;
+        private Donnees_Partagees ShareData = Program.DP;
+        private Form_Manager form_manager = Program.DP.FM;
+        private SQL_Manager _Manager=Program.DP._Manager;
+        
 
         public MainForm()
         {
@@ -24,8 +26,7 @@ namespace Inscription_Ocarina
         private void Butt_Add_Children_Click(object sender, EventArgs e)
         {
             ShareData.modif = false;
-            Program.DP.FM.OpenInscription_Children();
-            
+            form_manager.OpenInscription_Children();           
         }
 
         private void Butt_Validation_Click(object sender, EventArgs e)
@@ -35,10 +36,7 @@ namespace Inscription_Ocarina
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // TODO: cette ligne de code charge les données dans la table 'incriptionOcarinaDataSet.Enfant'. Vous pouvez la déplacer ou la supprimer selon les besoins.
-            this.enfantTableAdapter.Fill(this.incriptionOcarinaDataSet.Enfant);
-            Program.DP.FM.OpenFirstMove();
-
+            form_manager.OpenFirstMove();
         }
  
         private void Butt_Modifier_Participant_Click(object sender, EventArgs e)
@@ -62,7 +60,7 @@ namespace Inscription_Ocarina
                 ShareData.Fiche_Sante = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Fiche_Sante"].ToString().Trim());
 
                 ShareData.modif = true;
-                ShareData.FM.OpenInscription_Children();
+                form_manager.OpenInscription_Children();
 
             }
             catch (Exception ex)
@@ -73,29 +71,28 @@ namespace Inscription_Ocarina
         }
 
         private void But_Supp_Enfant_Click(object sender, EventArgs e)
-        {
-            _Manager = new SQL_Manager();
+        {           
             _Manager.suppChild(Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()));
         }
 
         
 
         private void BUT_Refresh_Click(object sender, EventArgs e)
-        {
-            _Manager = new SQL_Manager();
-            _Manager.refresh(dataGridView1,ComboBox_ListOfChildren);
-          
+        {            
+            _Manager.refresh(dataGridView1,ComboBox_ListOfChildren);         
         }
+
+        
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            _Manager.refresh(dataGridView1, ComboBox_ListOfChildren);
+        }
+
 
         private void CB_Payer_CheckedChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void MainForm_Activated(object sender, EventArgs e)
-        {
-            _Manager = new SQL_Manager();
-            _Manager.refresh(dataGridView1, ComboBox_ListOfChildren);
         }
     }
 }

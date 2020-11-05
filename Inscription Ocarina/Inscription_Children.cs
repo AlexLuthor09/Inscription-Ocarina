@@ -13,7 +13,8 @@ namespace Inscription_Ocarina
     public partial class Inscription_Children : Form
     {
         
-        SQL_Manager _Manager;
+        private SQL_Manager _Manager = Program.DP._Manager;
+        private Donnees_Partagees ShareData = Program.DP;
 
         public string nom ;
         public string prenom ;
@@ -37,12 +38,12 @@ namespace Inscription_Ocarina
 
         private void Butt_Validating_Click(object sender, EventArgs e)
         {
-           _Manager = new SQL_Manager();
+          
             
            
-            if (Program.DP.modif)
+            if (ShareData.modif)
             {
-                int id = Program.DP.id;
+                int id = ShareData.id;
 
                
                 nom = TB_Name.Text.Trim();
@@ -88,8 +89,8 @@ namespace Inscription_Ocarina
 
                 _Manager.addChildren(nom, prenom, age, date, email, N_national, adresse, mc,Fiche_Sante, Allergies, Remarque);
             }
-           
 
+            ShareData.modif = false;
             this.Close();
         }
 
@@ -98,18 +99,18 @@ namespace Inscription_Ocarina
 
             try
             {
-                TB_Name.Text = Program.DP.nom;
-                TB_Firstname.Text = Program.DP.prenom;
-                TB_Adresse.Text = Program.DP.adresse;
-                NUD_Age.Value = Program.DP.age;
-                TB_Email.Text = Program.DP.email;
-                TB_Allergies.Text = Program.DP.Allergies;
-                TB_N_National.Text = Program.DP.N_national.ToString();
-                TB_Remarques.Text = Program.DP.Remarque;
-                DTP_Naissance.Value = Program.DP.date;
-                CB_MC.Checked = Program.DP.mc;
-                CB_Fiche_Sante.Checked = Program.DP.Fiche_Sante;
-                Program.DP.modif = false;
+                TB_Name.Text = ShareData.nom;
+                TB_Firstname.Text = ShareData.prenom;
+                TB_Adresse.Text = ShareData.adresse;
+                NUD_Age.Value = ShareData.age;
+                TB_Email.Text = ShareData.email;
+                TB_Allergies.Text = ShareData.Allergies;
+                TB_N_National.Text = ShareData.N_national.ToString();
+                TB_Remarques.Text = ShareData.Remarque;
+                DTP_Naissance.Value = ShareData.date;
+                CB_MC.Checked = ShareData.mc;
+                CB_Fiche_Sante.Checked = ShareData.Fiche_Sante;
+                
             }
             catch (Exception ex)
             {

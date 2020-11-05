@@ -11,6 +11,7 @@ namespace Inscription_Ocarina
     {
         public Form Current_form;
 
+        private Donnees_Partagees ShareData = Program.DP;
         private MainForm mainform ;
         private Inscription_Children inscription_children ;
         private FirstMove firstmove;
@@ -33,40 +34,40 @@ namespace Inscription_Ocarina
         }
         private void OpenInscription_Children_modif()
         {
-            inscription_children.nom = Program.DP.nom;
-            inscription_children.prenom = Program.DP.prenom;
-            inscription_children.adresse = Program.DP.adresse;
-            inscription_children.age = Program.DP.age;
-            inscription_children.email = Program.DP.email;
-            inscription_children.Allergies = Program.DP.Allergies;
-            inscription_children.N_national= Program.DP.N_national;
-            inscription_children.Remarque= Program.DP.Remarque;
-            inscription_children.date = Program.DP.date;
-            inscription_children.mc = Program.DP.mc;
-            inscription_children.Fiche_Sante = Program.DP.Fiche_Sante;
+            inscription_children.nom = ShareData.nom;
+            inscription_children.prenom = ShareData.prenom;
+            inscription_children.adresse = ShareData.adresse;
+            inscription_children.age = ShareData.age;
+            inscription_children.email = ShareData.email;
+            inscription_children.Allergies = ShareData.Allergies;
+            inscription_children.N_national= ShareData.N_national;
+            inscription_children.Remarque= ShareData.Remarque;
+            inscription_children.date = ShareData.date;
+            inscription_children.mc = ShareData.mc;
+            inscription_children.Fiche_Sante = ShareData.Fiche_Sante;
             
         }
         private void OpenInscription_Children_Add()
         {
 
-            Program.DP.nom  = "";
-            Program.DP.prenom = "";
-            Program.DP.adresse = "";
-            Program.DP.age  = 0;
-            Program.DP.email = "";
-            Program.DP.Allergies = "";
-            Program.DP.N_national = 0;
-            Program.DP.Remarque  = "";
-            Program.DP.date = DateTime.Now;
-            Program.DP.mc = false;
-            Program.DP.Fiche_Sante  = false;
+            ShareData.nom  = "";
+            ShareData.prenom = "";
+            ShareData.adresse = "";
+            ShareData.age = 0;
+            ShareData.email = "";
+            ShareData.Allergies = "";
+            ShareData.N_national = 0;
+            ShareData.Remarque  = "";
+            ShareData.date = DateTime.Now;
+            ShareData.mc = false;
+            ShareData.Fiche_Sante = false;
            
             
         }
         public void OpenInscription_Children()
         {
 
-            if(Program.DP.modif)
+            if(ShareData.modif)
             {
                 OpenInscription_Children_modif();    
             }

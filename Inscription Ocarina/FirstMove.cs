@@ -12,6 +12,9 @@ namespace Inscription_Ocarina
 {
     public partial class FirstMove : Form
     {
+        private Donnees_Partagees ShareData = Program.DP;
+         private Form_Manager form_manager = Program.DP.FM;
+
         public FirstMove()
         {
             InitializeComponent();
