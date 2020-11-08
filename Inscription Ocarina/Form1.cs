@@ -103,5 +103,10 @@ namespace Inscription_Ocarina
         {
 
         }
+
+        private void BUT_Quitter_Click(object sender, EventArgs e)
+        {
+            form_manager.OpenExcel_impression();
+        }
     }
 }

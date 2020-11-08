@@ -334,6 +334,7 @@
             this.BUT_Quitter.TabIndex = 16;
             this.BUT_Quitter.Text = "Quitter";
             this.BUT_Quitter.UseVisualStyleBackColor = true;
+            this.BUT_Quitter.Click += new System.EventHandler(this.BUT_Quitter_Click);
             // 
             // MainForm
             // 

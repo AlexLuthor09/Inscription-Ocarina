@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Data;
+using Excel = Microsoft.Office.Interop.Excel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Inscription_Ocarina
 {
@@ -17,7 +20,7 @@ namespace Inscription_Ocarina
 
         private string connetionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = D:\Visual Studio\Inscription Ocarina\Inscription Ocarina\IncriptionOcarina.mdf; Integrated Security = True; Connect Timeout = 30";
         SqlConnection cnn;
-
+       
         public SQL_Manager() //test de connection
         {
 
@@ -138,7 +141,6 @@ namespace Inscription_Ocarina
                 IncriptionOcarinaDataSet ds = new IncriptionOcarinaDataSet();
                 da.Fill(ds, "Enfant");
 
-
                 combobox.DataBindings.Clear();
                 combobox.DataSource = null;
                 combobox.DataSource = ds.Enfant; //attention c'est pour savoir ou aller chercher
@@ -208,6 +210,45 @@ namespace Inscription_Ocarina
             }
 
         }
-       
+      
+        //public void ExportDataSetToExcel()
+        //{
+        //    cnn = new SqlConnection(connetionString);
+        //    string Query = "SELECT * from Enfant";
+        //    SqlDataAdapter da = new SqlDataAdapter(Query, cnn);
+        //    IncriptionOcarinaDataSet ds = new IncriptionOcarinaDataSet();
+        //    da.Fill(ds, "Enfant");
+        //    DataSet dp = ds;
+        //    //Creae an Excel application instance
+        //    Excel.Application excelApp = new Excel.Application();
+
+        //    //Create an Excel workbook instance and open it from the predefined location
+        //    Excel.Workbook excelWorkBook = excelApp.Workbooks.Open(ShareData.xlFile);
+            
+        //    foreach (DataTable table in dp.Tables)
+        //    {
+        //        //Add a new worksheet to workbook with the Datatable name
+        //        Excel.Worksheet excelWorkSheet = excelWorkBook.Sheets.Add();
+                    
+        //            excelWorkSheet.Name = table.TableName;
+
+        //            for (int i = 1; i < table.Columns.Count + 1; i++)
+        //            {
+        //                excelWorkSheet.Cells[1, i] = table.Columns[i - 1].ColumnName;
+        //            }
+
+        //            for (int j = 0; j < table.Rows.Count; j++)
+        //            {
+        //                for (int k = 0; k < table.Columns.Count; k++)
+        //                {
+        //                    excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
+        //                }
+        //            }
+        //    }
+        //    excelWorkBook.Save();
+        //    excelWorkBook.Close();
+        //    excelApp.Quit();
+        //}
+
     }
 }

@@ -31,6 +31,7 @@ namespace Inscription_Ocarina
         public bool present = false;
         public bool payer = false;
 
+        public string xlFile = null;
 
 
     }
