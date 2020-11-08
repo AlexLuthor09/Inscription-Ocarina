@@ -15,7 +15,7 @@ namespace Inscription_Ocarina
         private MainForm mainform ;
         private Inscription_Children inscription_children ;
         private FirstMove firstmove;
-        private Excel_Impression excel_Impression;
+       
 
         public Form_Manager()
         {
@@ -26,7 +26,7 @@ namespace Inscription_Ocarina
             this.mainform = new MainForm();
             this.inscription_children = new Inscription_Children();
             this.firstmove = new FirstMove();
-            this.excel_Impression = new Excel_Impression();
+            
             this.Current_form = mainform;  
         }
         public void OpenMainF()
@@ -34,11 +34,7 @@ namespace Inscription_Ocarina
             this.Current_form = this.mainform;
             Current_form.Show();
         }
-        public void OpenExcel_impression()
-        {
-            this.Current_form = this.excel_Impression;
-            Current_form.ShowDialog();
-        }
+        
         private void OpenInscription_Children_modif()
         {
             inscription_children.nom = ShareData.nom;

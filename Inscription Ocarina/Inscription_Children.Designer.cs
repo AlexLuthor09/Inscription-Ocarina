@@ -76,6 +76,7 @@
             this.TB_Name.Name = "TB_Name";
             this.TB_Name.Size = new System.Drawing.Size(383, 22);
             this.TB_Name.TabIndex = 2;
+            this.TB_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_KeyPress);
             // 
             // TB_Firstname
             // 
@@ -83,6 +84,7 @@
             this.TB_Firstname.Name = "TB_Firstname";
             this.TB_Firstname.Size = new System.Drawing.Size(383, 22);
             this.TB_Firstname.TabIndex = 3;
+            this.TB_Firstname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_KeyPress);
             // 
             // Butt_Validating
             // 
@@ -111,6 +113,7 @@
             this.TB_Remarques.Name = "TB_Remarques";
             this.TB_Remarques.Size = new System.Drawing.Size(381, 504);
             this.TB_Remarques.TabIndex = 8;
+            this.TB_Remarques.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_KeyPress);
             // 
             // TB_Allergies
             // 
@@ -119,6 +122,7 @@
             this.TB_Allergies.Name = "TB_Allergies";
             this.TB_Allergies.Size = new System.Drawing.Size(381, 316);
             this.TB_Allergies.TabIndex = 10;
+            this.TB_Allergies.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_KeyPress);
             // 
             // label5
             // 
@@ -135,6 +139,7 @@
             this.TB_Email.Name = "TB_Email";
             this.TB_Email.Size = new System.Drawing.Size(383, 22);
             this.TB_Email.TabIndex = 14;
+            this.TB_Email.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_KeyPress);
             // 
             // label6
             // 
@@ -160,6 +165,7 @@
             this.TB_Adresse.Name = "TB_Adresse";
             this.TB_Adresse.Size = new System.Drawing.Size(383, 22);
             this.TB_Adresse.TabIndex = 18;
+            this.TB_Adresse.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_KeyPress);
             // 
             // TB_N_National
             // 
@@ -260,6 +266,7 @@
             this.Name = "Inscription_Children";
             this.Text = "Inscription";
             this.Load += new System.EventHandler(this.Inscription_Children_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TB_Remarques_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Age)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -30,7 +30,7 @@ namespace Inscription_Ocarina
         public DateTime jour_actuel= DateTime.Now.Date;
         public bool present = false;
         public bool payer = false;
-
+        public int jour=0;
         public string xlFile = null;
 
 

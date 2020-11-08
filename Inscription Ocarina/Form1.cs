@@ -16,50 +16,69 @@ namespace Inscription_Ocarina
         private Form_Manager form_manager = Program.DP.FM;
         private SQL_Manager _Manager=Program.DP._Manager;
         
+        private void date_change()
+        {
+            switch (dateTimePicker1.Value.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    {
+                        ShareData.jour = 1;
+                        break;
+                    }
+                case DayOfWeek.Tuesday:
+                    {
+                        ShareData.jour = 2;
+                        break;
+                    }
+                case DayOfWeek.Wednesday:
+                    {
+                        ShareData.jour = 3;
+                        break;
+                    }
+                case DayOfWeek.Thursday:
+                    {
+                        ShareData.jour = 4;
+                        break;
+                    }
+                case DayOfWeek.Friday:
+                    {
+                        ShareData.jour = 5;
+                        break;
+                    }
+                default:
+                    {
+                        ShareData.jour = 1;
+                        break;
+                    }
+
+
+            }//initialise le jour qu'on est dans la semaine
+        }
 
         public MainForm()
         {
             InitializeComponent();
             
         }
-
+        private void MainForm_Load(object sender, EventArgs e)
+        {          
+            this.enfantTableAdapter1.Fill(this.incriptionOcarinaDataSet1.Enfant);
+            form_manager.OpenFirstMove();
+            date_change();
+        }
         private void Butt_Add_Children_Click(object sender, EventArgs e)
         {
             ShareData.modif = false;
             form_manager.OpenInscription_Children();           
         }
 
-        private void Butt_Validation_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            form_manager.OpenFirstMove();
-        }
- 
         private void Butt_Modifier_Participant_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
                 //faire attention au string qui sont entre[] car ils font appelle au nom des collone dans la table
-
-                ShareData.id = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()); // on récupère l'id
-                ShareData.nom = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Nom"].ToString().Trim());
-                ShareData.prenom = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Prenom"].ToString().Trim());
-                ShareData.N_national = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["N_Nationam"].ToString().Trim());
-                ShareData.Remarque = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Remarque"].ToString().Trim());
-                ShareData.mc = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["MC"].ToString().Trim());
-                ShareData.adresse = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Adresse"].ToString().Trim());
-                ShareData.Allergies = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Allergie"].ToString().Trim());
-                ShareData.age = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Age"].ToString().Trim());
-                ShareData.date = Convert.ToDateTime(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Date_Naissance"].ToString().Trim());
-                ShareData.email = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Email"].ToString().Trim());
-                ShareData.Fiche_Sante = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Fiche_Sante"].ToString().Trim());
-
-                ShareData.modif = true;
+                _Manager.chargementDATA(ComboBox_ListOfChildren);
                 form_manager.OpenInscription_Children();
 
             }
@@ -79,8 +98,7 @@ namespace Inscription_Ocarina
             }
         }
 
-        
-
+       
         private void BUT_Refresh_Click(object sender, EventArgs e)
         {            
             _Manager.refresh(dataGridView1,ComboBox_ListOfChildren);         
@@ -93,20 +111,29 @@ namespace Inscription_Ocarina
             _Manager.refresh(dataGridView1, ComboBox_ListOfChildren);
         }
 
-
-        private void CB_Payer_CheckedChanged(object sender, EventArgs e)
+        private void BUT_Export_to_excel_Click(object sender, EventArgs e)
         {
-
+            ShareData.xlFile = @"C:\Users\capal\Desktop\Ocarina\Project Inscription\Org.xlsx";
+            _Manager.ExportDataSetToExcel(ShareData.xlFile);
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void But_apayer_Click(object sender, EventArgs e)
         {
+            if(Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["jour"+ShareData.jour].ToString().Trim()))
+            _Manager.child_payer(ComboBox_ListOfChildren, false);
+            else _Manager.child_payer(ComboBox_ListOfChildren, true);
+            _Manager.refresh(dataGridView1, ComboBox_ListOfChildren);
+        }
 
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            date_change();
         }
 
         private void BUT_Quitter_Click(object sender, EventArgs e)
         {
-            form_manager.OpenExcel_impression();
+            this.Close();
         }
     }
+    
 }

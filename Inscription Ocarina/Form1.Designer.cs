@@ -32,14 +32,22 @@
             this.Butt_Add_Children = new System.Windows.Forms.Button();
             this.ComboBox_ListOfChildren = new System.Windows.Forms.ComboBox();
             this.incriptionOcarinaDataSet = new Inscription_Ocarina.IncriptionOcarinaDataSet();
-            this.enfantBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.Butt_Modifier_Participant = new System.Windows.Forms.Button();
-            this.Butt_Validation = new System.Windows.Forms.Button();
             this.CB_Fin_Plaine = new System.Windows.Forms.CheckBox();
-            this.CB_Payer = new System.Windows.Forms.CheckBox();
-            this.enfantTableAdapter = new Inscription_Ocarina.IncriptionOcarinaDataSetTableAdapters.EnfantTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.enfantBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.incriptionOcarinaDataSet1 = new Inscription_Ocarina.IncriptionOcarinaDataSet1();
+            this.But_Supp_Enfant = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.BUT_Refresh = new System.Windows.Forms.Button();
+            this.BUT_Quitter = new System.Windows.Forms.Button();
+            this.BUT_Export_to_excel = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.enfantTableAdapter1 = new Inscription_Ocarina.IncriptionOcarinaDataSet1TableAdapters.EnfantTableAdapter();
+            this.enfantBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.But_apayer = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prenomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,23 +58,25 @@
             this.mCDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.prixDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nbrJourDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fiche_Sante = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.remarqueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.allergieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.But_Supp_Enfant = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.BUT_Refresh = new System.Windows.Forms.Button();
-            this.CB_Present = new System.Windows.Forms.CheckBox();
-            this.BUT_Quitter = new System.Windows.Forms.Button();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.jour4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.jour5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Butt_Add_Children
             // 
-            this.Butt_Add_Children.Location = new System.Drawing.Point(794, 15);
+            this.Butt_Add_Children.Location = new System.Drawing.Point(968, 12);
             this.Butt_Add_Children.Name = "Butt_Add_Children";
             this.Butt_Add_Children.Size = new System.Drawing.Size(158, 71);
             this.Butt_Add_Children.TabIndex = 0;
@@ -90,11 +100,6 @@
             this.incriptionOcarinaDataSet.DataSetName = "IncriptionOcarinaDataSet";
             this.incriptionOcarinaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // enfantBindingSource
-            // 
-            this.enfantBindingSource.DataMember = "Enfant";
-            this.enfantBindingSource.DataSource = this.incriptionOcarinaDataSet;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -106,7 +111,7 @@
             // 
             // Butt_Modifier_Participant
             // 
-            this.Butt_Modifier_Participant.Location = new System.Drawing.Point(794, 92);
+            this.Butt_Modifier_Participant.Location = new System.Drawing.Point(968, 89);
             this.Butt_Modifier_Participant.Name = "Butt_Modifier_Participant";
             this.Butt_Modifier_Participant.Size = new System.Drawing.Size(158, 71);
             this.Butt_Modifier_Participant.TabIndex = 5;
@@ -114,40 +119,15 @@
             this.Butt_Modifier_Participant.UseVisualStyleBackColor = true;
             this.Butt_Modifier_Participant.Click += new System.EventHandler(this.Butt_Modifier_Participant_Click);
             // 
-            // Butt_Validation
-            // 
-            this.Butt_Validation.Location = new System.Drawing.Point(831, 346);
-            this.Butt_Validation.Name = "Butt_Validation";
-            this.Butt_Validation.Size = new System.Drawing.Size(121, 84);
-            this.Butt_Validation.TabIndex = 6;
-            this.Butt_Validation.Text = "Valider";
-            this.Butt_Validation.UseVisualStyleBackColor = true;
-            this.Butt_Validation.Click += new System.EventHandler(this.Butt_Validation_Click);
-            // 
             // CB_Fin_Plaine
             // 
             this.CB_Fin_Plaine.AutoSize = true;
-            this.CB_Fin_Plaine.Location = new System.Drawing.Point(831, 319);
+            this.CB_Fin_Plaine.Location = new System.Drawing.Point(1005, 676);
             this.CB_Fin_Plaine.Name = "CB_Fin_Plaine";
             this.CB_Fin_Plaine.Size = new System.Drawing.Size(111, 21);
             this.CB_Fin_Plaine.TabIndex = 7;
             this.CB_Fin_Plaine.Text = "Fin de plaine";
             this.CB_Fin_Plaine.UseVisualStyleBackColor = true;
-            // 
-            // CB_Payer
-            // 
-            this.CB_Payer.AutoSize = true;
-            this.CB_Payer.Location = new System.Drawing.Point(813, 246);
-            this.CB_Payer.Name = "CB_Payer";
-            this.CB_Payer.Size = new System.Drawing.Size(67, 21);
-            this.CB_Payer.TabIndex = 8;
-            this.CB_Payer.Text = "Payer";
-            this.CB_Payer.UseVisualStyleBackColor = true;
-            this.CB_Payer.CheckedChanged += new System.EventHandler(this.CB_Payer_CheckedChanged);
-            // 
-            // enfantTableAdapter
-            // 
-            this.enfantTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridView1
             // 
@@ -168,17 +148,118 @@
             this.mCDataGridViewCheckBoxColumn,
             this.prixDataGridViewTextBoxColumn,
             this.nbrJourDataGridViewTextBoxColumn,
+            this.Fiche_Sante,
             this.remarqueDataGridViewTextBoxColumn,
             this.allergieDataGridViewTextBoxColumn,
-            this.adresseDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.enfantBindingSource;
+            this.adresseDataGridViewTextBoxColumn,
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewCheckBoxColumn2,
+            this.dataGridViewCheckBoxColumn3,
+            this.jour4,
+            this.jour5});
+            this.dataGridView1.DataSource = this.enfantBindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(15, 69);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(773, 369);
+            this.dataGridView1.Size = new System.Drawing.Size(947, 728);
             this.dataGridView1.TabIndex = 9;
+            // 
+            // enfantBindingSource1
+            // 
+            this.enfantBindingSource1.DataMember = "Enfant";
+            this.enfantBindingSource1.DataSource = this.incriptionOcarinaDataSet1;
+            // 
+            // incriptionOcarinaDataSet1
+            // 
+            this.incriptionOcarinaDataSet1.DataSetName = "IncriptionOcarinaDataSet1";
+            this.incriptionOcarinaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // But_Supp_Enfant
+            // 
+            this.But_Supp_Enfant.Location = new System.Drawing.Point(968, 166);
+            this.But_Supp_Enfant.Name = "But_Supp_Enfant";
+            this.But_Supp_Enfant.Size = new System.Drawing.Size(158, 71);
+            this.But_Supp_Enfant.TabIndex = 11;
+            this.But_Supp_Enfant.Text = "Supprimer Participant";
+            this.But_Supp_Enfant.UseVisualStyleBackColor = true;
+            this.But_Supp_Enfant.Click += new System.EventHandler(this.But_Supp_Enfant_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(330, 41);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 12;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(327, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Jour Actuel";
+            // 
+            // BUT_Refresh
+            // 
+            this.BUT_Refresh.Location = new System.Drawing.Point(536, 39);
+            this.BUT_Refresh.Name = "BUT_Refresh";
+            this.BUT_Refresh.Size = new System.Drawing.Size(88, 27);
+            this.BUT_Refresh.TabIndex = 14;
+            this.BUT_Refresh.Text = "Refresh";
+            this.BUT_Refresh.UseVisualStyleBackColor = true;
+            this.BUT_Refresh.Click += new System.EventHandler(this.BUT_Refresh_Click);
+            // 
+            // BUT_Quitter
+            // 
+            this.BUT_Quitter.Location = new System.Drawing.Point(967, 716);
+            this.BUT_Quitter.Name = "BUT_Quitter";
+            this.BUT_Quitter.Size = new System.Drawing.Size(159, 57);
+            this.BUT_Quitter.TabIndex = 16;
+            this.BUT_Quitter.Text = "Quitter";
+            this.BUT_Quitter.UseVisualStyleBackColor = true;
+            this.BUT_Quitter.Click += new System.EventHandler(this.BUT_Quitter_Click);
+            // 
+            // BUT_Export_to_excel
+            // 
+            this.BUT_Export_to_excel.Location = new System.Drawing.Point(968, 480);
+            this.BUT_Export_to_excel.Name = "BUT_Export_to_excel";
+            this.BUT_Export_to_excel.Size = new System.Drawing.Size(159, 57);
+            this.BUT_Export_to_excel.TabIndex = 17;
+            this.BUT_Export_to_excel.Text = "Export to Excel";
+            this.BUT_Export_to_excel.UseVisualStyleBackColor = true;
+            this.BUT_Export_to_excel.Click += new System.EventHandler(this.BUT_Export_to_excel_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(968, 417);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 57);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Remarques / Allergies";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // enfantTableAdapter1
+            // 
+            this.enfantTableAdapter1.ClearBeforeFill = true;
+            // 
+            // enfantBindingSource
+            // 
+            this.enfantBindingSource.DataMember = "Enfant";
+            this.enfantBindingSource.DataSource = this.incriptionOcarinaDataSet1;
+            // 
+            // But_apayer
+            // 
+            this.But_apayer.Location = new System.Drawing.Point(630, 12);
+            this.But_apayer.Name = "But_apayer";
+            this.But_apayer.Size = new System.Drawing.Size(158, 54);
+            this.But_apayer.TabIndex = 19;
+            this.But_apayer.Text = "A payer";
+            this.But_apayer.UseVisualStyleBackColor = true;
+            this.But_apayer.Click += new System.EventHandler(this.But_apayer_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -239,6 +320,7 @@
             this.mCDataGridViewCheckBoxColumn.HeaderText = "MC";
             this.mCDataGridViewCheckBoxColumn.Name = "mCDataGridViewCheckBoxColumn";
             this.mCDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.mCDataGridViewCheckBoxColumn.Visible = false;
             // 
             // prixDataGridViewTextBoxColumn
             // 
@@ -253,7 +335,13 @@
             this.nbrJourDataGridViewTextBoxColumn.HeaderText = "Nbr_Jour";
             this.nbrJourDataGridViewTextBoxColumn.Name = "nbrJourDataGridViewTextBoxColumn";
             this.nbrJourDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nbrJourDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // Fiche_Sante
+            // 
+            this.Fiche_Sante.DataPropertyName = "Fiche_Sante";
+            this.Fiche_Sante.HeaderText = "Fiche_Sante";
+            this.Fiche_Sante.Name = "Fiche_Sante";
+            this.Fiche_Sante.ReadOnly = true;
             // 
             // remarqueDataGridViewTextBoxColumn
             // 
@@ -279,78 +367,56 @@
             this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
             this.adresseDataGridViewTextBoxColumn.Visible = false;
             // 
-            // But_Supp_Enfant
+            // dataGridViewCheckBoxColumn1
             // 
-            this.But_Supp_Enfant.Location = new System.Drawing.Point(794, 169);
-            this.But_Supp_Enfant.Name = "But_Supp_Enfant";
-            this.But_Supp_Enfant.Size = new System.Drawing.Size(158, 71);
-            this.But_Supp_Enfant.TabIndex = 11;
-            this.But_Supp_Enfant.Text = "Supprimer Participant";
-            this.But_Supp_Enfant.UseVisualStyleBackColor = true;
-            this.But_Supp_Enfant.Click += new System.EventHandler(this.But_Supp_Enfant_Click);
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "jour1";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "lundi";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             // 
-            // dateTimePicker1
+            // dataGridViewCheckBoxColumn2
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(330, 41);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 12;
+            this.dataGridViewCheckBoxColumn2.DataPropertyName = "jour2";
+            this.dataGridViewCheckBoxColumn2.HeaderText = "mardi";
+            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            this.dataGridViewCheckBoxColumn2.ReadOnly = true;
             // 
-            // label2
+            // dataGridViewCheckBoxColumn3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(327, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 17);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Jour Actuel";
+            this.dataGridViewCheckBoxColumn3.DataPropertyName = "jour3";
+            this.dataGridViewCheckBoxColumn3.HeaderText = "mercredi";
+            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
+            this.dataGridViewCheckBoxColumn3.ReadOnly = true;
             // 
-            // BUT_Refresh
+            // jour4
             // 
-            this.BUT_Refresh.Location = new System.Drawing.Point(536, 39);
-            this.BUT_Refresh.Name = "BUT_Refresh";
-            this.BUT_Refresh.Size = new System.Drawing.Size(88, 27);
-            this.BUT_Refresh.TabIndex = 14;
-            this.BUT_Refresh.Text = "Refresh";
-            this.BUT_Refresh.UseVisualStyleBackColor = true;
-            this.BUT_Refresh.Click += new System.EventHandler(this.BUT_Refresh_Click);
+            this.jour4.DataPropertyName = "jour4";
+            this.jour4.HeaderText = "jeudi";
+            this.jour4.Name = "jour4";
+            this.jour4.ReadOnly = true;
             // 
-            // CB_Present
+            // jour5
             // 
-            this.CB_Present.AutoSize = true;
-            this.CB_Present.Location = new System.Drawing.Point(813, 273);
-            this.CB_Present.Name = "CB_Present";
-            this.CB_Present.Size = new System.Drawing.Size(79, 21);
-            this.CB_Present.TabIndex = 15;
-            this.CB_Present.Text = "Present";
-            this.CB_Present.UseVisualStyleBackColor = true;
-            this.CB_Present.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // BUT_Quitter
-            // 
-            this.BUT_Quitter.Location = new System.Drawing.Point(629, 6);
-            this.BUT_Quitter.Name = "BUT_Quitter";
-            this.BUT_Quitter.Size = new System.Drawing.Size(159, 57);
-            this.BUT_Quitter.TabIndex = 16;
-            this.BUT_Quitter.Text = "Quitter";
-            this.BUT_Quitter.UseVisualStyleBackColor = true;
-            this.BUT_Quitter.Click += new System.EventHandler(this.BUT_Quitter_Click);
+            this.jour5.DataPropertyName = "jour5";
+            this.jour5.HeaderText = "vendredi";
+            this.jour5.Name = "jour5";
+            this.jour5.ReadOnly = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 450);
+            this.ClientSize = new System.Drawing.Size(1138, 809);
+            this.Controls.Add(this.But_apayer);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BUT_Export_to_excel);
             this.Controls.Add(this.BUT_Quitter);
-            this.Controls.Add(this.CB_Present);
             this.Controls.Add(this.BUT_Refresh);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.But_Supp_Enfant);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.CB_Payer);
             this.Controls.Add(this.CB_Fin_Plaine);
-            this.Controls.Add(this.Butt_Validation);
             this.Controls.Add(this.Butt_Modifier_Participant);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ComboBox_ListOfChildren);
@@ -360,8 +426,10 @@
             this.Activated += new System.EventHandler(this.MainForm_Activated);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incriptionOcarinaDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enfantBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,17 +441,21 @@
         private System.Windows.Forms.ComboBox ComboBox_ListOfChildren;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Butt_Modifier_Participant;
-        private System.Windows.Forms.Button Butt_Validation;
         private System.Windows.Forms.CheckBox CB_Fin_Plaine;
-        private System.Windows.Forms.CheckBox CB_Payer;
         private IncriptionOcarinaDataSet incriptionOcarinaDataSet;
-        private System.Windows.Forms.BindingSource enfantBindingSource;
-        private IncriptionOcarinaDataSetTableAdapters.EnfantTableAdapter enfantTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button But_Supp_Enfant;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BUT_Refresh;
+        private System.Windows.Forms.Button BUT_Quitter;
+        private System.Windows.Forms.Button BUT_Export_to_excel;
+        private System.Windows.Forms.Button button1;
+        private IncriptionOcarinaDataSet1 incriptionOcarinaDataSet1;
+        private System.Windows.Forms.BindingSource enfantBindingSource1;
+        private IncriptionOcarinaDataSet1TableAdapters.EnfantTableAdapter enfantTableAdapter1;
+        private System.Windows.Forms.BindingSource enfantBindingSource;
+        private System.Windows.Forms.Button But_apayer;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prenomDataGridViewTextBoxColumn;
@@ -394,11 +466,15 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn mCDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prixDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nbrJourDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Fiche_Sante;
         private System.Windows.Forms.DataGridViewTextBoxColumn remarqueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn allergieDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn adresseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.CheckBox CB_Present;
-        private System.Windows.Forms.Button BUT_Quitter;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn jour4;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn jour5;
     }
 }
 

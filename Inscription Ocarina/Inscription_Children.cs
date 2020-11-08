@@ -38,8 +38,7 @@ namespace Inscription_Ocarina
 
         private void Butt_Validating_Click(object sender, EventArgs e)
         {
-          
-            
+
            
             if (ShareData.modif)
             {
@@ -50,7 +49,7 @@ namespace Inscription_Ocarina
                 prenom = TB_Firstname.Text.Trim();              
                 age = Convert.ToInt32(NUD_Age.Value);
                 if (date.Date == DateTime.Now.Date)
-                    date = DateTime.MinValue;
+                    date = DateTime.Now;
                 else
                 date = DTP_Naissance.Value;               
                 email = TB_Email.Text.Trim();
@@ -73,7 +72,7 @@ namespace Inscription_Ocarina
                 prenom = TB_Firstname.Text.Trim();
                 age = Convert.ToInt32(NUD_Age.Value);
                 if (date.Date == DateTime.Now.Date)
-                    date = DateTime.MinValue;
+                    date = DateTime.Now;
                 else
                 date = DTP_Naissance.Value;
                 email = TB_Email.Text.Trim();
@@ -126,5 +125,20 @@ namespace Inscription_Ocarina
                 e.Handled = true;
             }
         }
+
+        private void TB_Remarques_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void TB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsPunctuation(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+       
     }
 }
