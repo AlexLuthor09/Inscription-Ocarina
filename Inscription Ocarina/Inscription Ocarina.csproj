@@ -90,18 +90,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Donnees_Partagees.cs" />
-    <Compile Include="Form_Manager.cs" />
-    <Compile Include="FirstMove.cs">
+    <Compile Include="Class\Donnees_Partagees.cs" />
+    <Compile Include="Class\Form_Manager.cs" />
+    <Compile Include="Forms\FirstMove.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FirstMove.Designer.cs">
+    <Compile Include="Forms\FirstMove.Designer.cs">
       <DependentUpon>FirstMove.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IncriptionOcarinaDataSet.Designer.cs">
@@ -114,10 +114,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IncriptionOcarinaDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Inscription_Children.cs">
+    <Compile Include="Forms\Inscription_Children.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inscription_Children.Designer.cs">
+    <Compile Include="Forms\Inscription_Children.Designer.cs">
       <DependentUpon>Inscription_Children.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -128,14 +128,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="SQL_Manager.cs" />
-    <EmbeddedResource Include="FirstMove.resx">
+    <Compile Include="Class\SQL_Manager.cs" />
+    <EmbeddedResource Include="Forms\FirstMove.resx">
       <DependentUpon>FirstMove.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inscription_Children.resx">
+    <EmbeddedResource Include="Forms\Inscription_Children.resx">
       <DependentUpon>Inscription_Children.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -180,7 +180,9 @@
     <None Include="Resources\Org.xlsx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="IncriptionOcarina.mdf">
