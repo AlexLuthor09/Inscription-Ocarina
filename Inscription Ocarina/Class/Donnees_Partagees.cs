@@ -20,6 +20,7 @@ namespace Inscription_Ocarina
         public int N_national=0;
         public string adresse =null;
         public bool mc = false;
+        public bool bim = false;
         public bool Fiche_Sante = false;
         public string Allergies = null;
         public string Remarque = null;

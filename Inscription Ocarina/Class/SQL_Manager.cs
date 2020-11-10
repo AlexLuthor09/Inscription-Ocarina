@@ -19,6 +19,10 @@ namespace Inscription_Ocarina
         private Donnees_Partagees ShareData = Program.DP;
         SqlDouble prixmc = 1.5;
         SqlDouble nprixmc = 6.5;
+        SqlDouble nprixBIM= 1;
+        string TA_bleu = "Bleu : 9-12";
+        string TA_vert = "Vert : 6-9";
+        string TA_jaune = "Jaune : 3-6";
 
         SqlConnection cnn;
         //attention ["  "] voir name du connectionString dans App.config 
@@ -43,39 +47,50 @@ namespace Inscription_Ocarina
                 }
             }
         }
-        public void addChildren(string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, bool Fiche_Sante, string Allergies, string Remarque)
+        public void addChildren(string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc,bool bim, bool Fiche_Sante, string Allergies, string Remarque)
         {
 
             using (cnn = new SqlConnection(connetionString))
             {
 
-                string Query = @"INSERT INTO Enfant  (Nom,Prenom,Email,N_Nationam,Date_Naissance,Age,MC,Fiche_Sante,Remarque,Allergie,Adresse,Prix,Nbr_Jour)" +
-                "SELECT @NOM,@PRENOM,@EMAIL,@N_NATIONAM,@DATE_NAISSANCE,@AGE,@MC,@FICHE_SANTE,@REMARQUE,@ALLERGIE,@ADRESSE,@PRIX,@NBR_JOUR";
+                string Query = @"INSERT INTO Enfant  (Nom,Prenom,Email,N_Nationam,Date_Naissance,Age,Tranche_age,MC,BIM,Fiche_Sante,Remarque,Allergie,Adresse,Prix,Nbr_Jour)" +
+                "SELECT @NOM,@PRENOM,@EMAIL,@N_NATIONAM,@DATE_NAISSANCE,@AGE,@TRANCHE_AGE,@MC,@BIM,@FICHE_SANTE,@REMARQUE,@ALLERGIE,@ADRESSE,@PRIX,@NBR_JOUR";
 
 
                 SqlDateTime da = date;
-
+                
                 try
                 {
 
                     cnn.Open();
-                    SqlCommand addChild = new SqlCommand(Query, cnn);
+                    SqlCommand addChild = new SqlCommand(Query, cnn);                    
                     addChild.Parameters.AddWithValue("@NOM", nom);
                     addChild.Parameters.AddWithValue("@PRENOM", prenom);
                     addChild.Parameters.AddWithValue("@EMAIL", email);
                     addChild.Parameters.AddWithValue("@N_NATIONAM", N_national);
                     addChild.Parameters.AddWithValue("@DATE_NAISSANCE", date);
                     addChild.Parameters.AddWithValue("@AGE", age);
+                    if(age >=9)
+                        addChild.Parameters.AddWithValue("@TRANCHE_AGE", TA_bleu);
+                    if(age < 9 && age >=6)
+                        addChild.Parameters.AddWithValue("@TRANCHE_AGE",TA_vert);
+                    if(age<6)
+                        addChild.Parameters.AddWithValue("@TRANCHE_AGE", TA_jaune);
                     addChild.Parameters.AddWithValue("@MC", mc);
+                    addChild.Parameters.AddWithValue("@BIM", bim);
                     addChild.Parameters.AddWithValue("@FICHE_SANTE", Fiche_Sante);
                     addChild.Parameters.AddWithValue("@REMARQUE", Remarque);                   
                     addChild.Parameters.AddWithValue("@ALLERGIE", Allergies);
                     addChild.Parameters.AddWithValue("@ADRESSE", adresse);
-                    if (mc)
-                        addChild.Parameters.AddWithValue("@PRIX", prixmc);
 
-                    else
-                        addChild.Parameters.AddWithValue("@PRIX", nprixmc);
+                    if (mc && !bim)
+                        addChild.Parameters.AddWithValue("@PRIX", prixmc.ToSqlMoney());
+
+                    else if(bim)
+                        addChild.Parameters.AddWithValue("@PRIX", nprixBIM.ToSqlMoney());
+                    else if(!bim && !mc)
+                        addChild.Parameters.AddWithValue("@PRIX", nprixmc.ToSqlMoney());
+
                     addChild.Parameters.AddWithValue("@NBR_JOUR", 0);
                     if (addChild.ExecuteNonQuery() == 0)
                         throw new ApplicationException("Aucune ligne insérée, vérifiez les paramètres!");
@@ -91,7 +106,7 @@ namespace Inscription_Ocarina
                 }
             }
         }
-        public void updateChildren(int ID, string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc, bool Fiche_Sante, string Allergies, string Remarque)
+        public void updateChildren(int ID, string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc,bool bim, bool Fiche_Sante, string Allergies, string Remarque)
         {
 
             using (cnn = new SqlConnection(connetionString))
@@ -104,6 +119,15 @@ namespace Inscription_Ocarina
                     p = nprixmc;
 
                 SqlDateTime da = date;
+
+                string actual_TA="ERROR";
+                if (age >= 9)
+                    actual_TA = TA_bleu;
+                if (age < 9 && age >= 6)
+                    actual_TA = TA_vert;
+                if (age < 6)
+                    actual_TA = TA_jaune;
+
                 string Query = "UPDATE Enfant SET " +
                     "Nom ='" + nom +
                     "',Prenom ='" + prenom +
@@ -111,7 +135,9 @@ namespace Inscription_Ocarina
                     "',N_Nationam ='" + N_national +
                     "',Date_Naissance ='" + da +
                     "',Age ='" + age +
+                    "',Tranche_age='"+ actual_TA +
                     "',MC ='" + mc +
+                    "',BIM ='" + bim +
                     "',Fiche_Sante ='" + Fiche_Sante +
                     "',Prix ='" + p.ToSqlDecimal() +
                     "',Remarque ='" + Remarque +
@@ -212,7 +238,7 @@ namespace Inscription_Ocarina
                 {
                     cnn.Open();
                     SqlDataAdapter da = new SqlDataAdapter(Query, cnn);
-                    IncriptionOcarinaDataSet ds = new IncriptionOcarinaDataSet();
+                    IncriptionOcarinaDataSet1 ds = new IncriptionOcarinaDataSet1();
                     da.Fill(ds, "Enfant");
 
                     combobox.DataBindings.Clear();
@@ -297,6 +323,7 @@ namespace Inscription_Ocarina
             ShareData.N_national = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["N_Nationam"].ToString().Trim());
             ShareData.Remarque = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Remarque"].ToString().Trim());
             ShareData.mc = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["MC"].ToString().Trim());
+            ShareData.bim = Convert.ToBoolean(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["BIM"].ToString().Trim());
             ShareData.adresse = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Adresse"].ToString().Trim());
             ShareData.Allergies = Convert.ToString(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Allergie"].ToString().Trim());
             ShareData.age = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Age"].ToString().Trim());
@@ -306,47 +333,34 @@ namespace Inscription_Ocarina
 
             ShareData.modif = true;
         }
-        public void ExportDataSetToExcel(string xlFile) //en dévelloppement
+        
+        public void ExportToExcel(string nom)
         {
-            
+            Exel_Manager exel_ = new Exel_Manager();
             using (cnn = new SqlConnection(connetionString))
             {
-                string Query = "SELECT * from Enfant";
-                SqlDataAdapter da = new SqlDataAdapter(Query, cnn);
-                IncriptionOcarinaDataSet ds = new IncriptionOcarinaDataSet();
-                da.Fill(ds, "Enfant");
-                DataSet dp = ds;
-                //Creae an Excel application instance
-                Excel.Application excelApp = new Excel.Application();
-
-                //Create an Excel workbook instance and open it from the predefined location
-                Excel.Workbook excelWorkBook = excelApp.Workbooks.Open(xlFile);
-
-                foreach (DataTable table in dp.Tables)
+                string Query = "SELECT Nom,Prenom,Tranche_age,Age,Date_Naissance,Email,N_Nationam,Adresse,MC,BIM,Prix,Nbr_jour,jour1,jour2,jour3,jour4,jour5 FROM Enfant";
+                
+                try
                 {
-                    //Add a new worksheet to workbook with the Datatable name
-                    Excel.Worksheet excelWorkSheet = excelWorkBook.Sheets.Add();
+                    cnn.Open();
+                    SqlDataAdapter export = new SqlDataAdapter(Query, cnn);
+                    DataSet ds = new DataSet();
+                    export.Fill(ds);
+                    ShareData.xlFile = nom;
+                    exel_.HelloWorldExcel(ds);
 
-                    excelWorkSheet.Name = table.TableName;
-
-                    for (int i = 1; i < table.Columns.Count + 1; i++)
-                    {
-                        excelWorkSheet.Cells[1, i] = table.Columns[i - 1].ColumnName;
-                    }
-
-                    for (int j = 0; j < table.Rows.Count; j++)
-                    {
-                        for (int k = 0; k < table.Columns.Count; k++)
-                        {
-                            excelWorkSheet.Cells[j + 2, k + 1] = table.Rows[j].ItemArray[k].ToString();
-                        }
-                    }
                 }
-                excelWorkBook.Save();
-                excelWorkBook.Close();
-                excelApp.Quit();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("nbr jour Ca marche pas connard car :  " + ex.Message);
+                }
+                finally
+                {
+
+                    cnn.Close();
+                }
             }
         }
-
     }
 }

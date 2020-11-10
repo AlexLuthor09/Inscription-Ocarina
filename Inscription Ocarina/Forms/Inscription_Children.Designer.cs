@@ -49,6 +49,7 @@
             this.CB_MC = new System.Windows.Forms.CheckBox();
             this.NUD_Age = new System.Windows.Forms.NumericUpDown();
             this.CB_Fiche_Sante = new System.Windows.Forms.CheckBox();
+            this.CB_BIM = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_Age)).BeginInit();
             this.SuspendLayout();
             // 
@@ -237,11 +238,22 @@
             this.CB_Fiche_Sante.Text = "Fiche santé";
             this.CB_Fiche_Sante.UseVisualStyleBackColor = true;
             // 
+            // CB_BIM
+            // 
+            this.CB_BIM.AutoSize = true;
+            this.CB_BIM.Location = new System.Drawing.Point(74, 301);
+            this.CB_BIM.Name = "CB_BIM";
+            this.CB_BIM.Size = new System.Drawing.Size(53, 21);
+            this.CB_BIM.TabIndex = 24;
+            this.CB_BIM.Text = "BIM";
+            this.CB_BIM.UseVisualStyleBackColor = true;
+            // 
             // Inscription_Children
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 793);
+            this.Controls.Add(this.CB_BIM);
             this.Controls.Add(this.CB_Fiche_Sante);
             this.Controls.Add(this.NUD_Age);
             this.Controls.Add(this.CB_MC);
@@ -296,5 +308,6 @@
         private System.Windows.Forms.CheckBox CB_MC;
         private System.Windows.Forms.NumericUpDown NUD_Age;
         private System.Windows.Forms.CheckBox CB_Fiche_Sante;
+        private System.Windows.Forms.CheckBox CB_BIM;
     }
 }

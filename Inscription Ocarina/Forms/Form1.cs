@@ -113,8 +113,7 @@ namespace Inscription_Ocarina
 
         private void BUT_Export_to_excel_Click(object sender, EventArgs e)
         {
-            ShareData.xlFile = @"C:\Users\capal\Desktop\Ocarina\Project Inscription\Org.xlsx";
-            _Manager.ExportDataSetToExcel(ShareData.xlFile);
+            _Manager.ExportToExcel("test");
         }
 
         private void But_apayer_Click(object sender, EventArgs e)

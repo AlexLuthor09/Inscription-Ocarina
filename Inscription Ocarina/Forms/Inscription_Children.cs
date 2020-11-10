@@ -26,6 +26,7 @@ namespace Inscription_Ocarina
         public string Remarque ;
         public DateTime date;
         public bool mc;
+        public bool bim;
         public bool Fiche_Sante;
 
 
@@ -59,12 +60,13 @@ namespace Inscription_Ocarina
                 N_national = Convert.ToInt32(TB_N_National.Text.Trim());             
                 adresse = TB_Adresse.Text.Trim();
                 mc = CB_MC.Checked;
+                bim = CB_BIM.Checked;
                 Fiche_Sante = CB_Fiche_Sante.Checked;
                 Allergies = TB_Allergies.Text.Trim();                
                 Remarque = TB_Remarques.Text.Trim();
                
 
-                _Manager.updateChildren(id, nom, prenom, age, date, email, N_national, adresse, mc,Fiche_Sante, Allergies, Remarque);
+                _Manager.updateChildren(id, nom, prenom, age, date, email, N_national, adresse, mc,bim,Fiche_Sante, Allergies, Remarque);
             }
             else
             {
@@ -82,11 +84,12 @@ namespace Inscription_Ocarina
                 N_national = Convert.ToInt32(TB_N_National.Text.Trim());
                 adresse = TB_Adresse.Text.Trim();
                 mc = CB_MC.Checked;
+                bim = CB_BIM.Checked;
                 Fiche_Sante = CB_Fiche_Sante.Checked;
                 Allergies = TB_Allergies.Text.Trim();
                 Remarque = TB_Remarques.Text.Trim();
 
-                _Manager.addChildren(nom, prenom, age, date, email, N_national, adresse, mc,Fiche_Sante, Allergies, Remarque);
+                _Manager.addChildren(nom, prenom, age, date, email, N_national, adresse, mc,bim,Fiche_Sante, Allergies, Remarque);
             }
 
             ShareData.modif = false;
@@ -108,6 +111,7 @@ namespace Inscription_Ocarina
                 TB_Remarques.Text = ShareData.Remarque;
                 DTP_Naissance.Value = ShareData.date;
                 CB_MC.Checked = ShareData.mc;
+                CB_BIM.Checked = ShareData.bim;
                 CB_Fiche_Sante.Checked = ShareData.Fiche_Sante;
                 
             }
