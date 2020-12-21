@@ -54,7 +54,7 @@ namespace Inscription_Ocarina
 
             }//initialise le jour qu'on est dans la semaine
         }
-
+        private bool supp = false;
         public MainForm()
         {
             InitializeComponent();
@@ -91,10 +91,12 @@ namespace Inscription_Ocarina
 
         private void But_Supp_Enfant_Click(object sender, EventArgs e)
         {
+            supp = true;
             DialogResult dialogResult = MessageBox.Show("Es-tu sûr de vouloir supprimer cet enfant ? ", "Supprimer", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                _Manager.suppChild(Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim()));
+                int id = Convert.ToInt32(((DataRowView)(ComboBox_ListOfChildren.SelectedItem))["Id"].ToString().Trim());
+                _Manager.suppChild(id);
             }
         }
 
@@ -108,12 +110,14 @@ namespace Inscription_Ocarina
 
         private void MainForm_Activated(object sender, EventArgs e)
         {
-            _Manager.refresh(dataGridView1, ComboBox_ListOfChildren);
+            if (!supp)
+                _Manager.refresh(dataGridView1, ComboBox_ListOfChildren);
+            else supp =false;
         }
 
         private void BUT_Export_to_excel_Click(object sender, EventArgs e)
         {
-            _Manager.ExportToExcel("test");
+            form_manager.OpenSortieExel();
         }
 
         private void But_apayer_Click(object sender, EventArgs e)
@@ -133,6 +137,12 @@ namespace Inscription_Ocarina
         {
             this.Close();
         }
+
+        private void But_Remarque_Click(object sender, EventArgs e)
+        {
+            form_manager.OpenSortieExelRemarque();                
+        }
+
     }
     
 }

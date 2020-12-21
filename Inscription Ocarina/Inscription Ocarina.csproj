@@ -25,21 +25,25 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,6 +65,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -104,6 +112,12 @@
     <Compile Include="Class\Donnees_Partagees.cs" />
     <Compile Include="Class\Form_Manager.cs" />
     <Compile Include="Class\Exel_Manager.cs" />
+    <Compile Include="Forms\SortieExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SortieExcel.Designer.cs">
+      <DependentUpon>SortieExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FirstMove.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +150,15 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Class\SQL_Manager.cs" />
+    <Compile Include="SortieExcelRemarque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SortieExcelRemarque.Designer.cs">
+      <DependentUpon>SortieExcelRemarque.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\SortieExcel.resx">
+      <DependentUpon>SortieExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FirstMove.resx">
       <DependentUpon>FirstMove.cs</DependentUpon>
     </EmbeddedResource>
@@ -150,7 +173,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App1.config" />
+    <EmbeddedResource Include="SortieExcelRemarque.resx">
+      <DependentUpon>SortieExcelRemarque.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="IncriptionOcarinaDataSet1.xsc">
       <DependentUpon>IncriptionOcarinaDataSet1.xsd</DependentUpon>
     </None>

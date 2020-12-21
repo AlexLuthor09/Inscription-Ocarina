@@ -20,9 +20,9 @@ namespace Inscription_Ocarina
         SqlDouble prixmc = 1.5;
         SqlDouble nprixmc = 6.5;
         SqlDouble nprixBIM= 1;
-        string TA_bleu = "Bleu : 9-12";
-        string TA_vert = "Vert : 6-9";
-        string TA_jaune = "Jaune : 3-6";
+        string TA_bleu = "Bleu 9 12";
+        string TA_vert = "Vert 6 9";
+        string TA_jaune = "Jaune 3 6";
 
         SqlConnection cnn;
         //attention ["  "] voir name du connectionString dans App.config 
@@ -68,7 +68,7 @@ namespace Inscription_Ocarina
                     addChild.Parameters.AddWithValue("@PRENOM", prenom);
                     addChild.Parameters.AddWithValue("@EMAIL", email);
                     addChild.Parameters.AddWithValue("@N_NATIONAM", N_national);
-                    addChild.Parameters.AddWithValue("@DATE_NAISSANCE", date);
+                    addChild.Parameters.AddWithValue("@DATE_NAISSANCE", da);
                     addChild.Parameters.AddWithValue("@AGE", age);
                     if(age >=9)
                         addChild.Parameters.AddWithValue("@TRANCHE_AGE", TA_bleu);
@@ -108,62 +108,63 @@ namespace Inscription_Ocarina
         }
         public void updateChildren(int ID, string nom, string prenom, int age, DateTime date, string email, int N_national, string adresse, bool mc,bool bim, bool Fiche_Sante, string Allergies, string Remarque)
         {
-
             using (cnn = new SqlConnection(connetionString))
             {
-                SqlDouble p;
-                if (mc)
-                    p = prixmc;
 
-                else
-                    p = nprixmc;
+                string Query = @"UPDATE Enfant  SET Nom = @NOM,Prenom= @PRENOM,Email= @EMAIL,N_Nationam = @N_NATIONAM,Date_Naissance = @DATE_NAISSANCE,Age = @AGE,Tranche_age= @TRANCHE_AGE,
+                   MC =@MC,BIM= @BIM,Fiche_Sante =@FICHE_SANTE,Remarque = @REMARQUE,Allergie=@ALLERGIE,Adresse=@ADRESSE,Prix=@PRIX" +
+                " Where ID = '"+ID+"';";
+
 
                 SqlDateTime da = date;
 
-                string actual_TA="ERROR";
-                if (age >= 9)
-                    actual_TA = TA_bleu;
-                if (age < 9 && age >= 6)
-                    actual_TA = TA_vert;
-                if (age < 6)
-                    actual_TA = TA_jaune;
-
-                string Query = "UPDATE Enfant SET " +
-                    "Nom ='" + nom +
-                    "',Prenom ='" + prenom +
-                    "',Email ='" + age +
-                    "',N_Nationam ='" + N_national +
-                    "',Date_Naissance ='" + da +
-                    "',Age ='" + age +
-                    "',Tranche_age='"+ actual_TA +
-                    "',MC ='" + mc +
-                    "',BIM ='" + bim +
-                    "',Fiche_Sante ='" + Fiche_Sante +
-                    "',Prix ='" + p.ToSqlDecimal() +
-                    "',Remarque ='" + Remarque +
-                    "',Allergie ='" + Allergies +
-                    "',Adresse = '" + adresse +
-                    "' WHERE Id =" + ID + ";";
-
                 try
                 {
-                    cnn.Open();
 
-                    SqlCommand modifchild = new SqlCommand(Query, cnn);
-                    if (modifchild.ExecuteNonQuery() == 0)
-                        throw new ApplicationException("y a r de modif !");
+                    cnn.Open();
+                    SqlCommand addChild = new SqlCommand(Query, cnn);
+                    addChild.Parameters.AddWithValue("@NOM", nom);
+                    addChild.Parameters.AddWithValue("@PRENOM", prenom);
+                    addChild.Parameters.AddWithValue("@EMAIL", email);
+                    addChild.Parameters.AddWithValue("@N_NATIONAM", N_national);
+                    addChild.Parameters.AddWithValue("@DATE_NAISSANCE", da);
+                    addChild.Parameters.AddWithValue("@AGE", age);
+                    if (age >= 9)
+                        addChild.Parameters.AddWithValue("@TRANCHE_AGE", TA_bleu);
+                    if (age < 9 && age >= 6)
+                        addChild.Parameters.AddWithValue("@TRANCHE_AGE", TA_vert);
+                    if (age < 6)
+                        addChild.Parameters.AddWithValue("@TRANCHE_AGE", TA_jaune);
+                    addChild.Parameters.AddWithValue("@MC", mc);
+                    addChild.Parameters.AddWithValue("@BIM", bim);
+                    addChild.Parameters.AddWithValue("@FICHE_SANTE", Fiche_Sante);
+                    addChild.Parameters.AddWithValue("@REMARQUE", Remarque);
+                    addChild.Parameters.AddWithValue("@ALLERGIE", Allergies);
+                    addChild.Parameters.AddWithValue("@ADRESSE", adresse);
+
+                    if (mc && !bim)
+                        addChild.Parameters.AddWithValue("@PRIX", prixmc.ToSqlMoney());
+
+                    else if (bim)
+                        addChild.Parameters.AddWithValue("@PRIX", nprixBIM.ToSqlMoney());
+                    else if (!bim && !mc)
+                        addChild.Parameters.AddWithValue("@PRIX", nprixmc.ToSqlMoney());
+
+                    
+                    if (addChild.ExecuteNonQuery() == 0)
+                        throw new ApplicationException("Aucune ligne insérée, vérifiez les paramètres!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ca marche pas connard car :  " + ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
                 finally
                 {
 
                     cnn.Close();
                 }
-
-            } 
+            }
+             
         }
         public void child_payer(ComboBox combobox,bool here)
         {
@@ -292,7 +293,7 @@ namespace Inscription_Ocarina
         {
             using (cnn = new SqlConnection(connetionString))
             {
-                string Query = "DELETE from Enfant where Id =" + Id;
+                string Query = "DELETE from Enfant where ID =" + Id;
 
 
                 try
@@ -334,13 +335,11 @@ namespace Inscription_Ocarina
             ShareData.modif = true;
         }
         
-        public void ExportToExcel(string nom)
+        private void ExportToExcel(string nom,string Query)
         {
             Exel_Manager exel_ = new Exel_Manager();
             using (cnn = new SqlConnection(connetionString))
             {
-                string Query = "SELECT Nom,Prenom,Tranche_age,Age,Date_Naissance,Email,N_Nationam,Adresse,MC,BIM,Prix,Nbr_jour,jour1,jour2,jour3,jour4,jour5 FROM Enfant";
-                
                 try
                 {
                     cnn.Open();
@@ -360,6 +359,38 @@ namespace Inscription_Ocarina
 
                     cnn.Close();
                 }
+            }
+        }
+        public void ExportRemarqueToExcel(string nom)
+        {
+            string Query = "SELECT Nom,Prenom,Remarque,Allergie FROM Enfant where Tranche_age ='";
+
+            try
+            {
+                string Query1 = Query + TA_bleu + "';";
+                this.ExportToExcel(nom + "_" + TA_bleu, Query1);
+                string Query2 = Query + TA_vert + "';";
+                this.ExportToExcel(nom + "_" + TA_vert, Query2);
+                string Query3 = Query + TA_jaune + "';";
+                this.ExportToExcel(nom + "_" + TA_jaune, Query3);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ca marche pas connard car :  " + ex.Message);
+            }
+           
+        }
+        public void ExportEnfantToExcel(string nom)
+        {
+            string Query = "SELECT Nom,Prenom,Tranche_age,Age,Date_Naissance,Email,N_Nationam,Adresse,MC,BIM,Prix,Nbr_jour,jour1,jour2,jour3,jour4,jour5 FROM Enfant";
+
+            try
+            {
+                this.ExportToExcel(nom, Query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ca marche pas connard car :  " + ex.Message);
             }
         }
     }

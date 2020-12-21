@@ -63,9 +63,19 @@ namespace Inscription_Ocarina.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Byte[].
         /// </summary>
-        public static byte[] Org {
+        public static byte[] IncriptionOcarina {
             get {
-                object obj = ResourceManager.GetObject("Org", resourceCulture);
+                object obj = ResourceManager.GetObject("IncriptionOcarina", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Byte[].
+        /// </summary>
+        public static byte[] IncriptionOcarina_log {
+            get {
+                object obj = ResourceManager.GetObject("IncriptionOcarina_log", resourceCulture);
                 return ((byte[])(obj));
             }
         }

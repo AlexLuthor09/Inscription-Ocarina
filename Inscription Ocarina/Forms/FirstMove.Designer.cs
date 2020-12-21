@@ -34,9 +34,10 @@
             // 
             // Butt_New_week
             // 
+            this.Butt_New_week.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Butt_New_week.Location = new System.Drawing.Point(12, 12);
             this.Butt_New_week.Name = "Butt_New_week";
-            this.Butt_New_week.Size = new System.Drawing.Size(213, 125);
+            this.Butt_New_week.Size = new System.Drawing.Size(257, 158);
             this.Butt_New_week.TabIndex = 0;
             this.Butt_New_week.Text = "Nouvelle Semaine";
             this.Butt_New_week.UseVisualStyleBackColor = true;
@@ -44,9 +45,10 @@
             // 
             // Butt_Current_week
             // 
-            this.Butt_Current_week.Location = new System.Drawing.Point(343, 12);
+            this.Butt_Current_week.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Butt_Current_week.Location = new System.Drawing.Point(315, 12);
             this.Butt_Current_week.Name = "Butt_Current_week";
-            this.Butt_Current_week.Size = new System.Drawing.Size(213, 125);
+            this.Butt_Current_week.Size = new System.Drawing.Size(257, 158);
             this.Butt_Current_week.TabIndex = 1;
             this.Butt_Current_week.Text = "Même semaine";
             this.Butt_Current_week.UseVisualStyleBackColor = true;
@@ -56,11 +58,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 164);
+            this.ClientSize = new System.Drawing.Size(582, 182);
+            this.ControlBox = false;
             this.Controls.Add(this.Butt_Current_week);
             this.Controls.Add(this.Butt_New_week);
             this.Name = "FirstMove";
-            this.Text = "FirstMove";
             this.ResumeLayout(false);
 
         }

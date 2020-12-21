@@ -12,10 +12,12 @@ namespace Inscription_Ocarina
         public Form Current_form;
 
         private Donnees_Partagees ShareData = Program.DP;
+
         private MainForm mainform ;
         private Inscription_Children inscription_children ;
         private FirstMove firstmove;
-       
+        private SortieExcel SortieExcel;
+        private SortieExcelRemarque sortieRemarqueExcel;
 
         public Form_Manager()
         {
@@ -26,7 +28,9 @@ namespace Inscription_Ocarina
             this.mainform = new MainForm();
             this.inscription_children = new Inscription_Children();
             this.firstmove = new FirstMove();
-            
+            this.SortieExcel = new SortieExcel();
+            this.sortieRemarqueExcel = new SortieExcelRemarque();
+
             this.Current_form = mainform;  
         }
         public void OpenMainF()
@@ -86,6 +90,17 @@ namespace Inscription_Ocarina
         public void OpenFirstMove()
         {
             this.Current_form = this.firstmove;
+            Current_form.ShowDialog();
+        }
+
+        public void OpenSortieExel()
+        {
+            this.Current_form = this.SortieExcel;
+            Current_form.ShowDialog();
+        }
+        public void OpenSortieExelRemarque()
+        {
+            this.Current_form = this.sortieRemarqueExcel;
             Current_form.ShowDialog();
         }
     }

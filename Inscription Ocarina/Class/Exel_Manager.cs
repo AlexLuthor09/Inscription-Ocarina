@@ -54,7 +54,7 @@ namespace Inscription_Ocarina
                         }
                     }
                 }
-                MessageBox.Show(" Remplissage : Terminer");
+               // MessageBox.Show(" Remplissage : Terminer");
             }
             catch
             {
@@ -65,16 +65,18 @@ namespace Inscription_Ocarina
             string truc = DataShare.xlFile;
             try
             {
+                //MessageBox.Show("coucou"+truc);
+               // xlWorkBook.Save();
                 xlWorkBook.SaveAs(truc + ".xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                 xlWorkBook.Close(true, misValue, misValue);
                 xlApp.Quit();
-                MessageBox.Show("Fichier Sauvegarder !");
+               // MessageBox.Show("Fichier Sauvegarder !");
             
                 releaseObject(xlWorkSheet);
                 releaseObject(xlWorkBook);
                 releaseObject(xlApp);
 
-            MessageBox.Show("Fichier Excel créer , tu peux le trouver ici : " + truc + ".xls");
+             //MessageBox.Show("Fichier Excel créer , tu peux le trouver ici : " + truc + ".xls");
             }
             catch
             {
