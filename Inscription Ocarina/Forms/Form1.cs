@@ -143,6 +143,10 @@ namespace Inscription_Ocarina
             form_manager.OpenSortieExelRemarque();                
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
     
 }

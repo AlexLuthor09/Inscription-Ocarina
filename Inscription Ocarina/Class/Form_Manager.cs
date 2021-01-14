@@ -21,7 +21,7 @@ namespace Inscription_Ocarina
 
         public Form_Manager()
         {
-            
+            ;  
         }
         public void Creation()
         {

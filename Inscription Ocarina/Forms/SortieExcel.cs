@@ -32,7 +32,7 @@ namespace Inscription_Ocarina
                     string dateFin = DTP_Stop.Value.Date.ToShortDateString().Trim();
                     string path = textBox1.Text;
                     _Manager.ExportEnfantToExcel(path + @"\" + NomPlaine + "_" + dateDebut + "_" + dateFin);
-
+                    MessageBox.Show("Fichier Excel créer , tu peux le trouver ici : " + path + @"\" + NomPlaine + "_" + dateDebut + "_" + dateFin + ".xls");
                     this.Close();
                 }
                 else

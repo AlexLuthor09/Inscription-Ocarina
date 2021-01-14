@@ -41,6 +41,7 @@ namespace Inscription_Ocarina
                     string NomPlaine = TB_NomPlaine.Text.Replace(@"\s", "").Trim();
                     string date = DateTime.Now.Date.ToShortDateString().Trim();
                     _Manager.ExportRemarqueToExcel(path + @"\" + NomPlaine +"_"+date);
+                    MessageBox.Show("Fichiers Excel créés , tu peux les trouver ici : " + path + @"\" + NomPlaine + "_" + date);
                     this.Close();
                 }
                 else
